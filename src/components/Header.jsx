@@ -25,7 +25,7 @@ export const Header = ({ showAddPage, setShowAddPage }) => {
                     </svg>
                 </div>
             </div>
-            {location.pathname === "/" ? (
+            {location.pathname === "/tasks" ? (
                 <AddButton
                     showAddPage={showAddPage}
                     setShowAddPage={setShowAddPage}

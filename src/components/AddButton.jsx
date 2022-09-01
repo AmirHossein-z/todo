@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const AddButton = ({ showAddPage, setShowAddPage }) => {
     return (
         <Link
-            to="/add"
+            to="tasks/add"
             onClick={() => {
                 setShowAddPage(true);
             }}
