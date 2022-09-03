@@ -6,15 +6,17 @@ import { useState } from "react";
 import useGetAllTasks from "./hooks/useGetAllTasks";
 
 const App = () => {
-    const [showAddPage, setShowAddPage] = useState(false);
-    const tasks = useGetAllTasks();
+    const [loading, tasks] = useGetAllTasks();
 
     return (
         <>
-            <Header showAddPage={showAddPage} setShowAddPage={setShowAddPage} />
+            <Header />
             <Routes>
                 <Route path="/" element={<Navigate to={"/tasks"} />} />
-                <Route path="/tasks" element={<Tasks tasks={tasks} />} />
+                <Route
+                    path="/tasks"
+                    element={<Tasks tasks={tasks} loading={loading} />}
+                />
                 <Route path="/tasks/add" element={<AddTask />} />
             </Routes>
         </>
