@@ -6,8 +6,8 @@ import { useState } from "react";
 import useGetAllTasks from "./hooks/useGetAllTasks";
 
 const App = () => {
-    const [loading, tasks] = useGetAllTasks();
-
+    const [loading, setLoading, tasks, setTasks] = useGetAllTasks();
+    const [task, setTask] = useState({});
     return (
         <>
             <Header />
@@ -17,7 +17,19 @@ const App = () => {
                     path="/tasks"
                     element={<Tasks tasks={tasks} loading={loading} />}
                 />
-                <Route path="/tasks/add" element={<AddTask />} />
+                <Route
+                    path="/tasks/add"
+                    element={
+                        <AddTask
+                            task={task}
+                            setTask={setTask}
+                            loading={loading}
+                            setLoading={setLoading}
+                            tasks={tasks}
+                            setTasks={setTasks}
+                        />
+                    }
+                />
             </Routes>
         </>
     );
