@@ -2,23 +2,24 @@ import { useEffect, useState } from "react";
 import { getTasks } from "../services/taskService";
 
 const useGetAllTasks = () => {
-    const [tasks, settasks] = useState([]);
-    const [loading, setloading] = useState(true);
+    const [tasks, setTasks] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
                 const { data } = await getTasks();
-                settasks(data);
+                setTasks(data);
             } catch (err) {
                 console.log(err);
             } finally {
-                setloading(false);
+                setLoading(false);
             }
         };
         fetchData();
     }, []);
-    return [loading, tasks];
+    return [loading, setLoading, tasks, setTasks];
 };
 
 export default useGetAllTasks;
