@@ -4,7 +4,7 @@ export const Header = () => {
     return (
         <header>
             <div className="flex justify-between items-center p-4 text-customText">
-                <h1 className="text-xl tracking-wider">My Tasks</h1>
+                <h1 className="text-xl tracking-wider">Todo app</h1>
                 <div>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
