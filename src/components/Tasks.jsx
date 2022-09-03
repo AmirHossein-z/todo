@@ -1,15 +1,12 @@
 import { CompletedTasks } from "./CompletedTasks";
+import { Loading } from "./Loading";
 import { Task } from "./Task";
-import loadingSVG from "../assets/loading.svg";
 
 export const Tasks = ({ tasks, loading }) => {
     return (
         <>
             {loading ? (
-                <main className="flex justify-center mt-10">
-                    {" "}
-                    <img src={loadingSVG} alt="loading" className="w-44" />{" "}
-                </main>
+                <Loading />
             ) : (
                 <main>
                     <div
