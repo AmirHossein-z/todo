@@ -6,3 +6,8 @@ export const getTasks = () => {
     const url = `${URL}/tasks`;
     return axios.get(url);
 };
+
+export const createTask = (task) => {
+    const url = `${URL}/tasks`;
+    return axios.post(url, task);
+};
