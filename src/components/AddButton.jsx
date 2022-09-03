@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
 
-export const AddButton = ({ showAddPage, setShowAddPage }) => {
+export const AddButton = () => {
     return (
-        <Link
-            to="tasks/add"
-            onClick={() => {
-                setShowAddPage(true);
-            }}
-        >
+        <Link to="tasks/add">
             <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 z-10 fixed right-6 bottom-6 bg-">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

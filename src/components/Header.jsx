@@ -1,9 +1,6 @@
-import { useLocation } from "react-router-dom";
 import { AddButton } from "./AddButton";
 
-export const Header = ({ showAddPage, setShowAddPage }) => {
-    const location = useLocation();
-
+export const Header = () => {
     return (
         <header>
             <div className="flex justify-between items-center p-4 text-customText">
@@ -25,12 +22,7 @@ export const Header = ({ showAddPage, setShowAddPage }) => {
                     </svg>
                 </div>
             </div>
-            {location.pathname === "/tasks" ? (
-                <AddButton
-                    showAddPage={showAddPage}
-                    setShowAddPage={setShowAddPage}
-                />
-            ) : null}
+            <AddButton />
         </header>
     );
 };
