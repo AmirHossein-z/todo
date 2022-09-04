@@ -74,9 +74,7 @@ export const AddTask = ({
                                 name="body"
                                 id="body"
                                 placeholder="body"
-                                cols="30"
-                                rows="10"
-                                className="rounded bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2"
+                                className="w-full min-h-[208px] max-h-52 rounded bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2"
                                 onChange={onTaskChange}
                             ></textarea>
                         </div>
