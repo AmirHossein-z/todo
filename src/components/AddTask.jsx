@@ -1,20 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTask } from "../services/taskService";
 import { Button } from "./Button";
 import { Loading } from "./Loading";
 
-export const AddTask = ({
-    task,
-    setTask,
-    loading,
-    setLoading,
-    tasks,
-    setTasks,
-}) => {
+export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
     const inputRef = useRef(null);
     const navigate = useNavigate();
+    const [task, setTask] = useState({});
 
     useEffect(() => {
         inputRef.current.focus();
@@ -81,9 +75,9 @@ export const AddTask = ({
                         <div className="mt-3 justify-center">
                             <Button
                                 textColor="customdark"
-                                bgColor="customText"
+                                bgColor="customdark"
                                 borderColor="customText"
-                                customStyles="w-full"
+                                customStyles="w-full hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
                             >
                                 Submit
                             </Button>
