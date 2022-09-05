@@ -4,9 +4,9 @@ export const AddButton = () => {
     const location = useLocation();
     return (
         <>
-            {location.pathname === "/tasks/add" ? null : (
+            {location.pathname === "/tasks" ? (
                 <Link to="tasks/add">
-                    <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 z-10 fixed right-6 bottom-6 bg-">
+                    <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 z-10 fixed right-6 bottom-6">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -23,7 +23,7 @@ export const AddButton = () => {
                         </svg>
                     </button>
                 </Link>
-            )}
+            ) : null}
         </>
     );
 };
