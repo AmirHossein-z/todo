@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { AddButton } from "./AddButton";
 
-export const Header = () => {
+const Header = () => {
     return (
         <header>
             <div className="flex justify-between items-center p-4 text-customText">
@@ -26,3 +27,5 @@ export const Header = () => {
         </header>
     );
 };
+
+export default memo(Header);
