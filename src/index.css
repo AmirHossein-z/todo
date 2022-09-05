@@ -2,27 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Roboto";
+    src: url("../public/fonts/Roboto-Light.woff2") format("woff2"),
+        url("../public/fonts/Roboto-Light.woff") format("woff"),
+        url("../public/fonts/Roboto-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     background-color: #38404b;
-}
-
-/* for loading component */
-.jump {
-    transition: all linear 0.3s;
-    animation-name: jump;
-    animation-duration: 600ms;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-@keyframes jump {
-    0% {
-        transform: translateY(10px);
-    }
-    ,
-    100% {
-        transform: translateY(10px);
-    }
+    font-family: Roboto;
 }
 
 .fade-in-from-bottom {
