@@ -38,7 +38,12 @@ const App = () => {
                 <Route
                     path="/tasks/:taskId"
                     element={
-                        <ViewTask setLoading={setLoading} loading={loading} />
+                        <ViewTask
+                            setLoading={setLoading}
+                            loading={loading}
+                            tasks={tasks}
+                            setTasks={setTasks}
+                        />
                     }
                 />
             </Routes>
