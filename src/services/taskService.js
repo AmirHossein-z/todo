@@ -22,3 +22,8 @@ export const updateTask = (task, taskId) => {
     const url = `${URL}/tasks/${taskId}`;
     return axios.put(url, task);
 };
+
+export const deleteTask = (taskId) => {
+    const url = `${URL}/tasks/${taskId}`;
+    return axios.delete(url);
+};
