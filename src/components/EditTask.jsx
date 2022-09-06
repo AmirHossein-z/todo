@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateTask } from "../services/taskService";
 import { Button } from "./Button";
@@ -9,9 +10,8 @@ export const EditTask = ({
     taskId,
     tasks,
     setTasks,
+    setViewState,
 }) => {
-    const navigate = useNavigate();
-
     // update value of inputs with every change happend
     const onTaskChange = (e) => {
         setTask({
@@ -34,7 +34,9 @@ export const EditTask = ({
                 let taskIndex = tasks.findIndex((item) => item.id === task.id);
                 prevTasks[taskIndex] = data;
                 setTasks([...prevTasks]);
-                navigate("/tasks");
+                await setTimeout(() => {
+                    setViewState(true);
+                }, 0);
             }
         } catch (err) {
             console.log(err);
