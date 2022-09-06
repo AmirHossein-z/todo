@@ -60,7 +60,7 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                 <Loading />
             ) : viewState ? (
                 <main
-                    className="my-5 p-5 transition-all duration-700 ease-in"
+                    className="my-5 p-5 transition-all duration-700 ease-in fade-in-from-bottom"
                     ref={viewRef}
                 >
                     <div className="text-lg flex justify-between items-center">
@@ -120,6 +120,7 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                     taskId={taskId}
                     tasks={tasks}
                     setTasks={setTasks}
+                    setViewState={setViewState}
                 />
             )}
         </>
