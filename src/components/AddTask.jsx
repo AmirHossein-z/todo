@@ -10,10 +10,12 @@ export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
     const navigate = useNavigate();
     const [task, setTask] = useState({});
 
+    // auto focus on first input when addTask component is mounted
     useEffect(() => {
         inputRef.current.focus();
     }, []);
 
+    // update value of inputs with every change happend
     const onTaskChange = (e) => {
         setTask({
             ...task,
@@ -21,6 +23,7 @@ export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
         });
     };
 
+    // add task and navigate to main page
     const AddTaskForm = async (e) => {
         e.preventDefault();
         try {

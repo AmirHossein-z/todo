@@ -4,6 +4,7 @@ import { updateTask } from "../services/taskService";
 export const Task = ({ task, tasks, setTasks }) => {
     const navigate = useNavigate();
 
+    // toggle task status whenever a task is clicked
     const changeTaskState = async () => {
         try {
             const { data, status: requestStatus } = await updateTask(

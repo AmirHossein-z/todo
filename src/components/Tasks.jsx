@@ -10,6 +10,7 @@ export const Tasks = ({ tasks, setTasks, loading }) => {
             ) : (
                 <main>
                     <div className="grid my-5 p-5 items-center gap-y-6 transition-all duration-1000 linear">
+                        {/* show tasks which haven't completed yet */}
                         {tasks.length > 0 ? (
                             tasks.map((task) => {
                                 return !task.status ? (

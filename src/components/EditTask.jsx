@@ -12,6 +12,7 @@ export const EditTask = ({
 }) => {
     const navigate = useNavigate();
 
+    // update value of inputs with every change happend
     const onTaskChange = (e) => {
         setTask({
             ...task,
@@ -19,6 +20,7 @@ export const EditTask = ({
         });
     };
 
+    // edit task info and navigate to main page
     const editTaskForm = async (e) => {
         e.preventDefault();
         try {

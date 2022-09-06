@@ -40,7 +40,6 @@ body {
     animation-name: fade-in-from-right;
     animation-duration: 700ms;
     animation-iteration-count: 1;
-    /* animation-delay: 1s; */
 }
 @keyframes fade-in-from-right {
     0% {

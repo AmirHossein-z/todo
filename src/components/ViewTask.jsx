@@ -11,6 +11,7 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
     const viewRef = useRef(null);
     const [viewState, setViewState] = useState(true);
 
+    // get task info and update task state in mounting stage
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,6 +29,7 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
         fetchData();
     }, []);
 
+    // remove task and navigate to main page
     const removeTask = async () => {
         if (
             window.confirm("Are you sure? this note will permamently deleted!!")

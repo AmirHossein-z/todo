@@ -7,6 +7,9 @@ export const CompletedTasks = ({ tasks, setTasks }) => {
                 Completed
             </h2>
             {tasks.map((task) => {
+                {
+                    /* show tasks which haven completed */
+                }
                 return task.status ? (
                     <Task
                         key={task.id}
