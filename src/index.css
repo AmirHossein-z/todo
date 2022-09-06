@@ -34,3 +34,22 @@ body {
         transform: translateY(0px);
     }
 }
+
+.fade-in-from-right {
+    transition: all ease-out 0.7s;
+    animation-name: fade-in-from-right;
+    animation-duration: 700ms;
+    animation-iteration-count: 1;
+    /* animation-delay: 1s; */
+}
+@keyframes fade-in-from-right {
+    0% {
+        opacity: 0;
+        transform: translateX(208px);
+    }
+    ,
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
