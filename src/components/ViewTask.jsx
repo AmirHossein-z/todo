@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { confirmAlert } from "react-confirm-alert";
 import { useNavigate, useParams } from "react-router-dom";
 import { getTask, deleteTask } from "../services/taskService";
+import { Button } from "./Button";
 import { EditTask } from "./EditTask";
 import { Loading } from "./Loading";
 
@@ -29,28 +31,67 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
         fetchData();
     }, []);
 
+    const confirmDelete = () => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div className="grid bg-slate-800 p-3 px-5 rounded gap-y-5">
+                        <div className="flex justify-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                className="w-9 h-9 text-yellow-500 text-center"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                        <p className="text-red-500 font-bold text-center">
+                            this note will permamently deleted!!
+                        </p>
+                        <div className="flex justify-between items-center">
+                            <button
+                                className="text-black bg-[#66bb6a] p-2 rounded"
+                                onClick={onClose}
+                            >
+                                No
+                            </button>
+                            <button
+                                onClick={() => {
+                                    removeTask();
+                                    onClose();
+                                }}
+                                className="text-white bg-[#d33] p-2 rounded"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                );
+            },
+        });
+    };
+
     // remove task and navigate to main page
     const removeTask = async () => {
-        if (
-            window.confirm("Are you sure? this note will permamently deleted!!")
-        ) {
-            setLoading(true);
-            try {
-                const { status } = await deleteTask(taskId);
-                if (status === 200) {
-                    const prevTasks = [...tasks];
-                    const taskIndex = tasks.findIndex(
-                        (item) => item.id === taskId
-                    );
-                    prevTasks.splice(taskIndex, 1);
-                    setTasks(prevTasks);
-                    navigate("/tasks");
-                }
-            } catch (err) {
-                console.log(err);
-            } finally {
-                setLoading(false);
+        setLoading(true);
+        try {
+            const { status } = await deleteTask(taskId);
+            if (status === 200) {
+                const prevTasks = [...tasks];
+                const taskIndex = tasks.findIndex((item) => item.id === taskId);
+                prevTasks.splice(taskIndex, 1);
+                setTasks(prevTasks);
+                navigate("/tasks");
             }
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -75,7 +116,7 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
                                         className="w-5 h-5 text-red-500 active:text-red-700 cursor-pointer"
-                                        onClick={removeTask}
+                                        onClick={confirmDelete}
                                     >
                                         <path
                                             fillRule="evenodd"
