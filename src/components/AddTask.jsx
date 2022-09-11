@@ -47,10 +47,17 @@ export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
             {loading ? (
                 <Loading />
             ) : (
-                <main className="grid my-5 p-5 items-center gap-y-6 text-customText">
-                    <form action="" className="grid" onSubmit={AddTaskForm}>
+                <main className="grid my-5 p-5 items-center text-customText fade-in-from-bottom md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto">
+                    <form
+                        action=""
+                        className="grid gap-y-5"
+                        onSubmit={AddTaskForm}
+                    >
                         <div className="flex items-center">
-                            <label htmlFor="form-title" className="mr-3">
+                            <label
+                                htmlFor="form-title"
+                                className="mr-3 text-sm md:text-base"
+                            >
                                 Title
                             </label>
                             <input
@@ -59,28 +66,31 @@ export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
                                 name="title"
                                 id="title"
                                 ref={inputRef}
-                                className="py-1.5 px-1 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded outline-none"
+                                className="text-sm py-1.5 px-1 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded outline-none"
                                 onChange={onTaskChange}
                             />
                         </div>
                         <div className="grid my-3">
-                            <label htmlFor="form-body" className="mb-3">
+                            <label
+                                htmlFor="form-body"
+                                className="mb-3 text-sm md:text-base"
+                            >
                                 Body
                             </label>
                             <textarea
                                 name="body"
                                 id="body"
                                 placeholder="body"
-                                className="w-full min-h-[208px] max-h-52 rounded bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2"
+                                className="text-sm w-full min-h-[208px] max-h-52 rounded bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2.5 sm:p-3"
                                 onChange={onTaskChange}
                             ></textarea>
                         </div>
-                        <div className="mt-3 justify-center">
+                        <div className="mt-3 flex justify-center">
                             <Button
                                 textColor="customdark"
                                 bgColor="customdark"
                                 borderColor="customText"
-                                customStyles="w-full hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
+                                customStyles="text-sm w-full sm:w-1/2 mx-auto hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
                             >
                                 Submit
                             </Button>

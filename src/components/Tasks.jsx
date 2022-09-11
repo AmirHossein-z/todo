@@ -9,7 +9,7 @@ export const Tasks = ({ tasks, setTasks, loading }) => {
                 <Loading />
             ) : (
                 <main>
-                    <div className="grid my-5 p-5 items-center gap-y-6 transition-all duration-1000 linear">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 my-5 p-5 sm:p-7 items-center gap-y-6 md:gap-x-6 transition-all duration-1000 linear">
                         {/* show tasks which haven't completed yet */}
                         {tasks.length > 0 ? (
                             tasks.map((task) => {

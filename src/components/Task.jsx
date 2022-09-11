@@ -33,7 +33,7 @@ export const Task = ({ task, tasks, setTasks }) => {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="w-5 h-5"
+                        className="w-5 h-5 sm:w-6 sm:h-6"
                         onClick={changeTaskState}
                     >
                         <path
@@ -44,18 +44,18 @@ export const Task = ({ task, tasks, setTasks }) => {
                     </svg>
                 ) : (
                     <button
-                        className="w-4 h-4 rounded-full border-2 border-customText"
+                        className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-customText"
                         onClick={changeTaskState}
                     ></button>
                 )}
-                <h3 className="text-base mr-8">{task.title}</h3>
+                <h3 className="text-base sm:text-lg mr-8">{task.title}</h3>
             </div>
             <div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="w-5 h-5 cursor-pointer"
+                    className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer mr-1"
                     onClick={() => {
                         navigate(`/tasks/${task.id}`);
                     }}

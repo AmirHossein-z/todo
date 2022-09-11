@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { updateTask } from "../services/taskService";
 import { Button } from "./Button";
 
@@ -46,10 +44,13 @@ export const EditTask = ({
     };
 
     return (
-        <main className="grid my-5 p-5 items-center gap-y-6 text-customText fade-in-from-right">
-            <form action="" className="grid" onSubmit={editTaskForm}>
+        <main className="grid my-5 p-5 items-center text-customText fade-in-from-right md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto">
+            <form action="" className="grid gap-y-5" onSubmit={editTaskForm}>
                 <div className="flex items-center">
-                    <label htmlFor="form-title" className="mr-3">
+                    <label
+                        htmlFor="form-title"
+                        className="mr-3 text-sm md:text-base"
+                    >
                         Title
                     </label>
                     <input
@@ -57,30 +58,33 @@ export const EditTask = ({
                         placeholder="title"
                         name="title"
                         id="title"
-                        className="py-1.5 px-1 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded outline-none"
+                        className="text-sm py-1.5 px-1 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded outline-none"
                         value={task.title}
                         onChange={onTaskChange}
                     />
                 </div>
                 <div className="grid my-3">
-                    <label htmlFor="form-body" className="mb-3">
+                    <label
+                        htmlFor="form-body"
+                        className="mb-3 text-sm md:text-base"
+                    >
                         Body
                     </label>
                     <textarea
                         name="body"
                         id="body"
                         placeholder="body"
-                        className="w-full min-h-[208px] max-h-52 rounded bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2"
+                        className="text-sm w-full min-h-[208px] max-h-52 rounded bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2.5 sm:p-3"
                         value={task.body}
                         onChange={onTaskChange}
                     ></textarea>
                 </div>
-                <div className="mt-3 justify-center">
+                <div className="mt-3 flex justify-center">
                     <Button
                         textColor="customdark"
                         bgColor="customdark"
                         borderColor="customText"
-                        customStyles="w-full hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
+                        customStyles="text-sm w-full sm:w-1/2 mx-auto hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
                     >
                         Edit
                     </Button>

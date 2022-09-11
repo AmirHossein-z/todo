@@ -2,18 +2,22 @@ import { Link, useLocation } from "react-router-dom";
 
 export const AddButton = () => {
     const location = useLocation();
+
     return (
         <>
             {location.pathname === "/tasks" ? (
                 <Link to="tasks/add">
-                    <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 z-10 fixed right-6 bottom-6">
+                    <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 sm:p-3 z-10 flex items-center gap-x-3 fixed right-6 bottom-6 md:static md:inset-0 md:shadow-none md:active:shadow-none">
+                        <span className="md:text-lg xl:text-lg hidden md:block border border-customText hover:bg-customText hover:text-customdark rounded-md p-2 px-2.5  transition-all duration-300 linear">
+                            Add new note
+                        </span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-8 h-8 text-customText"
+                            className="w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 md:hidden text-customText rounded-full"
                         >
                             <path
                                 strokeLinecap="round"

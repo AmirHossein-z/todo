@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import { useNavigate, useParams } from "react-router-dom";
 import { getTask, deleteTask } from "../services/taskService";
-import { Button } from "./Button";
 import { EditTask } from "./EditTask";
 import { Loading } from "./Loading";
 
@@ -41,7 +40,7 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
-                                className="w-9 h-9 text-yellow-500 text-center"
+                                className="w-10 h-10 text-yellow-500 text-center"
                             >
                                 <path
                                     fillRule="evenodd"
@@ -50,22 +49,22 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                                 />
                             </svg>
                         </div>
-                        <p className="text-red-500 font-bold text-center">
+                        <p className="text-red-500 font-bold text-center my-2">
                             this note will permamently deleted!!
                         </p>
                         <div className="flex justify-between items-center">
                             <button
-                                className="text-black bg-[#66bb6a] p-2 rounded"
+                                className="text-black bg-[#66bb6a] py-2 px-3 rounded"
                                 onClick={onClose}
                             >
-                                No
+                                Cancel
                             </button>
                             <button
                                 onClick={() => {
                                     removeTask();
                                     onClose();
                                 }}
-                                className="text-white bg-[#d33] p-2 rounded"
+                                className="text-white bg-[#d33] py-2 px-3 rounded"
                             >
                                 Delete
                             </button>
@@ -101,22 +100,24 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                 <Loading />
             ) : viewState ? (
                 <main
-                    className="my-5 p-5 transition-all duration-700 ease-in fade-in-from-bottom"
+                    className="my-5 p-5 transition-all duration-700 ease-in fade-in-from-bottom md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
                     ref={viewRef}
                 >
                     <div className="text-lg flex justify-between items-center">
-                        <h1 className="text-customText text-lg font-bold">
+                        <h1 className="text-customText text-lg sm:text-xl font-bold">
                             {task.title}
                         </h1>
                         <div>
-                            <div className="flex gap-x-3">
-                                <span>
+                            <div className="flex gap-x-4">
+                                <span
+                                    onClick={confirmDelete}
+                                    className="cursor-pointer"
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
-                                        className="w-5 h-5 text-red-500 active:text-red-700 cursor-pointer"
-                                        onClick={confirmDelete}
+                                        className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-red-500 active:text-red-700"
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -124,32 +125,40 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                                             clipRule="evenodd"
                                         />
                                     </svg>
+                                    <span className="text-red-500 active:text-red-700 hover:text-red-700 lg:text-lg font-bold hidden md:block">
+                                        Delete
+                                    </span>
                                 </span>
-                                <span>
+                                <span
+                                    onClick={() => {
+                                        viewRef.current.classList.add(
+                                            "translate-x-52",
+                                            "opacity-0"
+                                        );
+                                        setTimeout(() => {
+                                            setViewState(false);
+                                        }, 800);
+                                    }}
+                                    className="cursor-pointer"
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
-                                        className="w-5 h-5 text-yellow-500 cursor-pointer"
-                                        onClick={() => {
-                                            viewRef.current.classList.add(
-                                                "translate-x-52",
-                                                "opacity-0"
-                                            );
-                                            setTimeout(() => {
-                                                setViewState(false);
-                                            }, 800);
-                                        }}
+                                        className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-yellow-500 active:text-yellow-700"
                                     >
                                         <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
                                         <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
                                     </svg>
+                                    <span className="text-yellow-500 active:text-yellow-700 hover:text-yellow-700 lg:text-lg font-bold hidden md:block">
+                                        Edit
+                                    </span>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div className="my-5 bg-customText bg-opacity-20 w-full h-0.5 rounded"></div>
-                    <div className="text-customText text-base">
+                    <div className="my-5 sm:my-4 md:my-3  bg-customText bg-opacity-20 w-full h-0.5 rounded"></div>
+                    <div className="text-customText text-sm sm:text-base break-words m-0 p-1 sm:p-1.5">
                         <p>{task.body}</p>
                     </div>
                 </main>
