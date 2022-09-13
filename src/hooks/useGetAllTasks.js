@@ -7,6 +7,7 @@ import { getTasks } from "../services/taskService";
  */
 const useGetAllTasks = () => {
     const [tasks, setTasks] = useState([]);
+    const [completedTasks, setCompletedTasks] = useState([]);
     const [loading, setLoading] = useState(false);
 
     // get All tasks info and update tasks state in mounting stage
@@ -15,7 +16,9 @@ const useGetAllTasks = () => {
             setLoading(true);
             try {
                 const { data } = await getTasks();
-                setTasks(data);
+                setTasks(data.filter((task) => !task.status));
+
+                setCompletedTasks(data.filter((task) => task.status));
             } catch (err) {
                 console.log(err);
             } finally {
@@ -24,7 +27,14 @@ const useGetAllTasks = () => {
         };
         fetchData();
     }, []);
-    return [loading, setLoading, tasks, setTasks];
+    return [
+        loading,
+        setLoading,
+        tasks,
+        setTasks,
+        completedTasks,
+        setCompletedTasks,
+    ];
 };
 
 export default useGetAllTasks;

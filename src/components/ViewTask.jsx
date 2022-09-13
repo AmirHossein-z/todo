@@ -5,7 +5,14 @@ import { getTask, deleteTask } from "../services/taskService";
 import { EditTask } from "./EditTask";
 import { Loading } from "./Loading";
 
-export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
+export const ViewTask = ({
+    loading,
+    setLoading,
+    tasks,
+    setTasks,
+    completedTasks,
+    setCompletedTasks,
+}) => {
     const { taskId } = useParams();
     const navigate = useNavigate();
     const [task, setTask] = useState({});
@@ -81,10 +88,21 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
         try {
             const { status } = await deleteTask(taskId);
             if (status === 200) {
-                const prevTasks = [...tasks];
-                const taskIndex = tasks.findIndex((item) => item.id === taskId);
-                prevTasks.splice(taskIndex, 1);
-                setTasks(prevTasks);
+                if (task.status) {
+                    const prevTasks = [...completedTasks];
+                    const taskIndex = completedTasks.findIndex(
+                        (item) => item.id === taskId
+                    );
+                    prevTasks.splice(taskIndex, 1);
+                    setCompletedTasks(prevTasks);
+                } else {
+                    const prevTasks = [...tasks];
+                    const taskIndex = tasks.findIndex(
+                        (item) => item.id === taskId
+                    );
+                    prevTasks.splice(taskIndex, 1);
+                    setTasks(prevTasks);
+                }
                 navigate("/tasks");
             }
         } catch (err) {
@@ -171,6 +189,8 @@ export const ViewTask = ({ loading, setLoading, tasks, setTasks }) => {
                     tasks={tasks}
                     setTasks={setTasks}
                     setViewState={setViewState}
+                    completedTasks={completedTasks}
+                    setCompletedTasks={setCompletedTasks}
                 />
             )}
         </>

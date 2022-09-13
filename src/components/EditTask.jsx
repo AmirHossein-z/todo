@@ -9,6 +9,8 @@ export const EditTask = ({
     tasks,
     setTasks,
     setViewState,
+    completedTasks,
+    setCompletedTasks,
 }) => {
     // update value of inputs with every change happend
     const onTaskChange = (e) => {
@@ -28,10 +30,21 @@ export const EditTask = ({
                 taskId
             );
             if (requestStatus === 200) {
-                const prevTasks = [...tasks];
-                let taskIndex = tasks.findIndex((item) => item.id === task.id);
-                prevTasks[taskIndex] = data;
-                setTasks([...prevTasks]);
+                if (data.status) {
+                    const prevTasks = [...completedTasks];
+                    let taskIndex = completedTasks.findIndex(
+                        (item) => item.id === task.id
+                    );
+                    prevTasks[taskIndex] = data;
+                    setCompletedTasks([...prevTasks]);
+                } else {
+                    const prevTasks = [...tasks];
+                    let taskIndex = tasks.findIndex(
+                        (item) => item.id === task.id
+                    );
+                    prevTasks[taskIndex] = data;
+                    setTasks([...prevTasks]);
+                }
                 await setTimeout(() => {
                     setViewState(true);
                 }, 0);

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const Task = ({ task, changeTaskState }) => {
+export const CompletedTask = ({ task, changeTaskState }) => {
     const navigate = useNavigate();
 
     return (
@@ -25,9 +25,7 @@ export const Task = ({ task, changeTaskState }) => {
                 ) : (
                     <button
                         className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-customText"
-                        onClick={() => {
-                            changeTaskState(task);
-                        }}
+                        onClick={changeTaskState}
                     ></button>
                 )}
                 <h3 className="text-base sm:text-lg mr-8">{task.title}</h3>

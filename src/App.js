@@ -4,8 +4,16 @@ import Header from "./components/Header";
 import { AddTask } from "./components/AddTask";
 import useGetAllTasks from "./hooks/useGetAllTasks";
 import { ViewTask } from "./components/ViewTask";
+
 const App = () => {
-    const [loading, setLoading, tasks, setTasks] = useGetAllTasks();
+    const [
+        loading,
+        setLoading,
+        tasks,
+        setTasks,
+        completedTasks,
+        setCompletedTasks,
+    ] = useGetAllTasks();
 
     return (
         <>
@@ -19,6 +27,8 @@ const App = () => {
                             tasks={tasks}
                             setTasks={setTasks}
                             loading={loading}
+                            completedTasks={completedTasks}
+                            setCompletedTasks={setCompletedTasks}
                         />
                     }
                 />
@@ -41,6 +51,8 @@ const App = () => {
                             loading={loading}
                             tasks={tasks}
                             setTasks={setTasks}
+                            completedTasks={completedTasks}
+                            setCompletedTasks={setCompletedTasks}
                         />
                     }
                 />
