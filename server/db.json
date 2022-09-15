@@ -1,9 +1,42 @@
 {
   "tasks": [
     {
-      "title": "first Note",
-      "body": "this is body",
+      "title": "test",
+      "body": "test",
+      "status": false,
+      "tags": [
+        {
+          "id": "tag1",
+          "text": "tag1"
+        },
+        {
+          "id": "tag2",
+          "text": "tag2"
+        },
+        {
+          "id": "tag3",
+          "text": "tag3"
+        }
+      ],
       "id": 1
+    }
+  ],
+  "completedTasks": [
+    {
+      "title": "test2",
+      "body": "test2",
+      "status": true,
+      "tags": [
+        {
+          "id": "tag1",
+          "text": "tag1"
+        },
+        {
+          "id": "test",
+          "text": "test"
+        }
+      ],
+      "id": 2
     }
   ]
 }

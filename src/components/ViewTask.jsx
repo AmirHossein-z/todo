@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getTask, deleteTask } from "../services/taskService";
 import { EditTask } from "./EditTask";
 import { Loading } from "./Loading";
+import { TagTicket } from "./TagTicket";
 
 export const ViewTask = ({
     loading,
@@ -15,18 +16,24 @@ export const ViewTask = ({
 }) => {
     const { taskId } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const [task, setTask] = useState({});
     const viewRef = useRef(null);
     const [viewState, setViewState] = useState(true);
+    const [tags, setTags] = useState([]);
 
     // get task info and update task state in mounting stage
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const { data, status } = await getTask(taskId);
+                const { status, data } = await getTask(
+                    taskId,
+                    location.pathname
+                );
                 if (status === 200) {
                     setTask(data);
+                    setTags(data.tags);
                 }
             } catch (err) {
                 console.log(err);
@@ -86,7 +93,7 @@ export const ViewTask = ({
     const removeTask = async () => {
         setLoading(true);
         try {
-            const { status } = await deleteTask(taskId);
+            const { status } = await deleteTask(taskId, location.pathname);
             if (status === 200) {
                 if (task.status) {
                     const prevTasks = [...completedTasks];
@@ -179,6 +186,18 @@ export const ViewTask = ({
                     <div className="text-customText text-sm sm:text-base break-words m-0 p-1 sm:p-1.5">
                         <p>{task.body}</p>
                     </div>
+                    <div className="mt-5">
+                        <h2 className="text-customText text-base sm:text-lg mb-3">
+                            Tags
+                        </h2>
+                        <div className="text-sm sm:text-base flex gap-x-6">
+                            {tags
+                                ? tags.map((tag) => (
+                                      <TagTicket key={tag.id} text={tag.text} />
+                                  ))
+                                : null}
+                        </div>
+                    </div>
                 </main>
             ) : (
                 <EditTask
@@ -191,6 +210,8 @@ export const ViewTask = ({
                     setViewState={setViewState}
                     completedTasks={completedTasks}
                     setCompletedTasks={setCompletedTasks}
+                    tags={tags}
+                    setTags={setTags}
                 />
             )}
         </>

@@ -1,92 +1,92 @@
-import { updateTask } from "../services/taskService";
+import { Droppable } from "react-beautiful-dnd";
 import { CompletedTask } from "./CompletedTask";
 import { Loading } from "./Loading";
 import { Task } from "./Task";
 
 export const Tasks = ({
     tasks,
-    setTasks,
     loading,
     completedTasks,
-    setCompletedTasks,
+    changeTaskState,
+    dropShowBox,
 }) => {
-    // toggle task status whenever a task is clicked
-    const changeTaskState = async (task) => {
-        try {
-            const { data, status: requestStatus } = await updateTask(
-                {
-                    ...task,
-                    status: !task.status,
-                },
-                task.id
-            );
-            if (requestStatus === 200) {
-                if (data.status) {
-                    const prevTasks = [...tasks];
-                    let taskIndex = prevTasks.findIndex(
-                        (item) => item.id === task.id
-                    );
-                    prevTasks.splice(taskIndex, 1);
-                    setTasks([...prevTasks]);
-
-                    setCompletedTasks([...completedTasks, data]);
-                } else {
-                    const prevCompletedTasks = [...completedTasks];
-                    let index = prevCompletedTasks.findIndex(
-                        (item) => item.id === task.id
-                    );
-                    prevCompletedTasks.splice(index, 1);
-                    setCompletedTasks([...prevCompletedTasks]);
-
-                    setTasks([...tasks, data]);
-                }
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
     return (
         <>
             {loading ? (
                 <Loading />
             ) : (
-                <main>
-                    <div className="">
-                        <h2 className="p-5 sm:p-7 text-lg sm:text-xl xl:text-2xl text-customText tracking-wider font-bold">
-                            Tasks
-                        </h2>
-                        <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 p-5 sm:p-7 items-center gap-y-6 md:gap-x-6 transition-all duration-1000 linear">
-                            {/* show tasks which haven't completed yet */}
-                            {tasks.length > 0
-                                ? tasks.map((task) => {
-                                      return !task.status ? (
-                                          <Task
-                                              key={task.id}
-                                              task={task}
-                                              changeTaskState={changeTaskState}
-                                          />
-                                      ) : null;
-                                  })
-                                : null}
-                        </div>
-                    </div>
-                    <div className="grid my-5 p-5 sm:p-7 items-center gap-y-6 transition-all duration-1000 linear">
-                        <h2 className="text-lg sm:text-xl xl:text-2xl text-customText tracking-wider font-bold">
-                            Completed
-                        </h2>
-                        <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-y-6 md:gap-x-6">
-                            {completedTasks.length > 0
-                                ? completedTasks.map((task) => (
-                                      <CompletedTask
-                                          key={task.id}
-                                          task={task}
-                                          changeTaskState={changeTaskState}
-                                      />
-                                  ))
-                                : null}
-                        </div>
-                    </div>
+                <main className="grid sm:grid-cols-2 gap-y-10">
+                    <Droppable droppableId="1">
+                        {(provided) => (
+                            <div
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                            >
+                                <div>
+                                    <h2 className="p-5 text-base md:text-lg xl:text-xl text-customText tracking-wider font-bold">
+                                        Tasks
+                                    </h2>
+                                    <div className="grid gap-y-6 p-3 items-center transition-all duration-1000 linear max-w-md md:max-w-lg m-auto md:m-0">
+                                        {dropShowBox.state &&
+                                        dropShowBox.droppableId === "2" ? (
+                                            <p className="text-yellow-100 text-lg md:text-lg xl:text-xl mt-10 mx-auto animate-bounce">
+                                                Drag Task here
+                                            </p>
+                                        ) : tasks.length > 0 ? (
+                                            tasks.map((task, index) => (
+                                                <Task
+                                                    key={task.id}
+                                                    task={task}
+                                                    index={index}
+                                                    changeTaskState={
+                                                        changeTaskState
+                                                    }
+                                                />
+                                            ))
+                                        ) : null}
+                                        {/* show tasks which haven't completed yet */}
+                                        {provided.placeholder}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </Droppable>
+                    <Droppable droppableId="2">
+                        {(provided) => (
+                            <div
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                            >
+                                <div className="">
+                                    <h2 className="p-5 text-base md:text-lg xl:text-xl text-customText tracking-wider font-bold">
+                                        Completed
+                                    </h2>
+                                    <div className="grid gap-y-6 p-3 transition-all duration-1000 linear max-w-md md:max-w-lg m-auto md:m-0">
+                                        {dropShowBox.state &&
+                                        dropShowBox.droppableId === "1" ? (
+                                            <p className="text-yellow-100 md:text-lg xl:text-xl text-lg mt-10 mx-auto animate-bounce">
+                                                Drag Task here
+                                            </p>
+                                        ) : completedTasks.length > 0 ? (
+                                            completedTasks.map(
+                                                (task, index) => (
+                                                    <CompletedTask
+                                                        key={task.id}
+                                                        task={task}
+                                                        index={index}
+                                                        changeTaskState={
+                                                            changeTaskState
+                                                        }
+                                                    />
+                                                )
+                                            )
+                                        ) : null}
+                                        {provided.placeholder}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </Droppable>
                 </main>
             )}
         </>

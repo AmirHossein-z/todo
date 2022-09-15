@@ -1,17 +1,19 @@
 import { memo } from "react";
 import { AddButton } from "./AddButton";
+import { TagButton } from "./TagButton";
 
 const Header = () => {
     return (
         <header>
-            <div className="flex justify-between items-center p-4 sm:p-6 md:p-7 text-customText font-bold">
-                <h1 className="text-xl md:text-2xl tracking-wider">Todo app</h1>
+            <div className="flex justify-between items-center p-2.5 xl:p-3 text-customText font-bold">
+                <h1 className="text-lg lg:text-xl tracking-wider">Todo app</h1>
                 <div className="flex items-center gap-x-3">
                     <AddButton />
+                    <TagButton />
                     <a href="https://github.com/AmirHossein-z">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-brand-github w-8 h-8 text-customText md:w-9 md:h-9 xl:w-10 xl:h-10"
+                            className="icon icon-tabler icon-tabler-brand-github w-8 h-8 text-customText xl:w-9 xl:h-9"
                             width="24"
                             height="24"
                             viewBox="0 0 24 24"

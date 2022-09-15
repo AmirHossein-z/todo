@@ -5,10 +5,11 @@ export const AddButton = () => {
 
     return (
         <>
-            {location.pathname === "/tasks" ? (
+            {location.pathname === "/tasks" ||
+            location.pathname === "/tasks/" ? (
                 <Link to="tasks/add">
-                    <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 sm:p-3 z-10 flex items-center gap-x-3 fixed right-6 bottom-6 md:static md:inset-0 md:shadow-none md:active:shadow-none">
-                        <span className="md:text-lg xl:text-lg hidden md:block border border-customText hover:bg-customText hover:text-customdark rounded-md p-2 px-2.5  transition-all duration-300 linear">
+                    <button className="shadow-[9px_7px_17px_rgba(0,0,0,0.5)] active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] rounded-full p-2 lg:p-3 z-10 flex items-center gap-x-3 fixed right-6 bottom-6 md:static md:inset-0 md:shadow-none md:active:shadow-none">
+                        <span className="md:text-lg hidden md:block border border-customText hover:bg-customText hover:text-customdark rounded-md p-2 px-2.5  transition-all duration-300 linear">
                             Add new note
                         </span>
                         <svg
@@ -17,7 +18,7 @@ export const AddButton = () => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 md:hidden text-customText rounded-full"
+                            className="w-8 h-8 md:w-9 md:h-9 xl:w-10 xl:h-10 md:hidden text-customText rounded-full"
                         >
                             <path
                                 strokeLinecap="round"

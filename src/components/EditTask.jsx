@@ -1,5 +1,6 @@
 import { updateTask } from "../services/taskService";
 import { Button } from "./Button";
+import { WithContext as InputTags } from "react-tag-input";
 
 export const EditTask = ({
     task,
@@ -11,6 +12,8 @@ export const EditTask = ({
     setViewState,
     completedTasks,
     setCompletedTasks,
+    tags,
+    setTags,
 }) => {
     // update value of inputs with every change happend
     const onTaskChange = (e) => {
@@ -20,14 +23,24 @@ export const EditTask = ({
         });
     };
 
+    const handleDeleteTag = (i) => {
+        setTags(tags.filter((tag, index) => index !== i));
+    };
+    const handleAdditionTag = (tag) => {
+        setTags([...tags, tag]);
+    };
+
+    const handleDrag = () => {};
+
     // edit task info and navigate to main page
     const editTaskForm = async (e) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const { data, status: requestStatus } = await updateTask(
-                { ...task },
-                taskId
+            const { status: requestStatus, data } = await updateTask(
+                { ...task, tags: tags },
+                taskId,
+                task.status
             );
             if (requestStatus === 200) {
                 if (data.status) {
@@ -92,9 +105,27 @@ export const EditTask = ({
                         onChange={onTaskChange}
                     ></textarea>
                 </div>
+                <div className="flex flex-col justify-center">
+                    <label htmlFor="tags" className="mb-3 text-base">
+                        Tags:
+                    </label>
+                    <InputTags
+                        tags={tags}
+                        handleDelete={handleDeleteTag}
+                        handleAddition={handleAdditionTag}
+                        handleDrag={handleDrag}
+                        name="tags"
+                        id="tags"
+                        inputFieldPosition="bottom"
+                        delimiters={[188, 13]}
+                    />
+                    <span className="text-sm text-yellow-100 mt-2">
+                        press enter or comma to add another tag
+                    </span>
+                </div>
                 <div className="mt-3 flex justify-center">
                     <Button
-                        textColor="customdark"
+                        textColor="customText"
                         bgColor="customdark"
                         borderColor="customText"
                         customStyles="text-sm w-full sm:w-1/2 mx-auto hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"

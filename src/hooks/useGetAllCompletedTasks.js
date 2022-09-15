@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { getTasks } from "../services/taskService";
+import { getCompletedTasks } from "../services/taskService";
 
 /**
- * @description a customhook for getting all tasks
+ * @description a customhook for getting all completed tasks
  * @return loading & tasks states
  */
-const useGetAllTasks = (setLoading) => {
-    const [tasks, setTasks] = useState([]);
+const useGetAllCompletedTasks = (setLoading) => {
+    const [completedTasks, setCompletedTasks] = useState([]);
 
     // get All tasks info and update tasks state in mounting stage
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const { data, status } = await getTasks();
-                if (status === 200) setTasks(data);
+                const { data } = await getCompletedTasks();
+                setCompletedTasks(data);
             } catch (err) {
                 console.log(err);
             } finally {
@@ -23,7 +23,7 @@ const useGetAllTasks = (setLoading) => {
         };
         fetchData();
     }, []);
-    return [tasks, setTasks];
+    return [completedTasks, setCompletedTasks];
 };
 
-export default useGetAllTasks;
+export default useGetAllCompletedTasks;
