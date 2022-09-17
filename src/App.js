@@ -1,12 +1,3 @@
-// components
-import { Tasks } from "./components/Tasks";
-import Header from "./components/Header";
-import { AddTask } from "./components/AddTask";
-import useGetAllTasks from "./hooks/useGetAllTasks";
-import { ViewTask } from "./components/ViewTask";
-import { Tags } from "./components/Tags";
-
-import useGetAllCompletedTasks from "./hooks/useGetAllCompletedTasks";
 import {
     addCompletedTask,
     createTask,
@@ -16,7 +7,13 @@ import {
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Tag } from "./components/Tag";
+
+//hooks
+import useGetAllCompletedTasks from "./hooks/useGetAllCompletedTasks";
+import useGetAllTasks from "./hooks/useGetAllTasks";
+
+// components
+import { AddTask, Header, Tag, Tags, Tasks, ViewTask } from "./components";
 
 const App = () => {
     const [loading, setLoading] = useState(false);

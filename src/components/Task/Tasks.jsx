@@ -1,9 +1,9 @@
 import { Droppable } from "react-beautiful-dnd";
-import { CompletedTask } from "./CompletedTask";
-import { Loading } from "./Loading";
-import { Task } from "./Task";
+import CompletedTask from "./CompletedTask";
+import Loading from "../Loading";
+import Task from "./Task";
 
-export const Tasks = ({
+const Tasks = ({
     tasks,
     loading,
     completedTasks,
@@ -92,3 +92,5 @@ export const Tasks = ({
         </>
     );
 };
+
+export default Tasks;

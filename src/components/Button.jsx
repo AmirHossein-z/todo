@@ -1,4 +1,4 @@
-export const Button = ({
+const Button = ({
     children,
     textColor,
     bgColor,
@@ -13,3 +13,5 @@ export const Button = ({
         </button>
     );
 };
+
+export default Button;

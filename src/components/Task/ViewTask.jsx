@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getTask, deleteTask } from "../services/taskService";
-import { EditTask } from "./EditTask";
-import { Loading } from "./Loading";
-import { TagTicket } from "./TagTicket";
+import { getTask, deleteTask } from "../../services/taskService";
+import EditTask from "./EditTask";
+import Loading from "../Loading";
+import TagTicket from "../Tag/TagTicket";
 
-export const ViewTask = ({
+const ViewTask = ({
     loading,
     setLoading,
     tasks,
@@ -217,3 +217,5 @@ export const ViewTask = ({
         </>
     );
 };
+
+export default ViewTask;

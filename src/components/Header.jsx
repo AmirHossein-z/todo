@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { AddButton } from "./AddButton";
-import { TagButton } from "./TagButton";
+import AddButton from "./AddButton";
+import TagButton from "./TagButton";
 
 const Header = () => {
     return (

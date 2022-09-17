@@ -1,7 +1,7 @@
 import { Draggable } from "react-beautiful-dnd";
 import { useNavigate } from "react-router-dom";
 
-export const CompletedTask = ({ task, index, changeTaskState }) => {
+const CompletedTask = ({ task, index, changeTaskState }) => {
     const navigate = useNavigate();
 
     return (
@@ -56,3 +56,5 @@ export const CompletedTask = ({ task, index, changeTaskState }) => {
         </Draggable>
     );
 };
+
+export default CompletedTask;

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-export const TagButton = () => {
+const TagButton = () => {
     const location = useLocation();
 
     return (
@@ -30,3 +30,5 @@ export const TagButton = () => {
         </>
     );
 };
+
+export default TagButton;

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-export const AddButton = () => {
+const AddButton = () => {
     const location = useLocation();
 
     return (
@@ -32,3 +32,5 @@ export const AddButton = () => {
         </>
     );
 };
+
+export default AddButton;

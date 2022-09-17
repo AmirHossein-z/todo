@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useGetAllCompletedTasks from "../hooks/useGetAllCompletedTasks";
-import useGetAllTasks from "../hooks/useGetAllTasks";
+import useGetAllCompletedTasks from "../../hooks/useGetAllCompletedTasks";
+import useGetAllTasks from "../../hooks/useGetAllTasks";
 
 const filterTasks = (completedTasks, tasks, tagId) => {
     let allTasks = [...tasks, ...completedTasks];
@@ -16,7 +16,7 @@ const filterTasks = (completedTasks, tasks, tagId) => {
     return result;
 };
 
-export const Tag = () => {
+const Tag = () => {
     const { tagId } = useParams();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -75,13 +75,4 @@ export const Tag = () => {
     );
 };
 
-// tasks.map((task, index) => (
-//     <Task
-//         key={task.id}
-//         task={task}
-//         index={index}
-//         changeTaskState={
-//             changeTaskState
-//         }
-//     />
-// ))
+export default Tag;

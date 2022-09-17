@@ -1,5 +1,6 @@
 import loadingSVG from "../assets/loading.svg";
-export const Loading = () => {
+
+const Loading = () => {
     return (
         <div className="flex justify-center mt-10 animate-bounce">
             <img
@@ -10,3 +11,5 @@ export const Loading = () => {
         </div>
     );
 };
+
+export default Loading;

@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTask } from "../services/taskService";
-import { Button } from "./Button";
-import { Loading } from "./Loading";
+import { createTask } from "../../services/taskService";
+import Button from "../Button";
+import Loading from "../Loading";
 import { WithContext as InputTags } from "react-tag-input";
 
-export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
+const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
     const inputRef = useRef(null);
     const navigate = useNavigate();
     const [task, setTask] = useState({});
@@ -134,3 +134,5 @@ export const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
         </>
     );
 };
+
+export default AddTask;

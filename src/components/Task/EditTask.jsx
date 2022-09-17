@@ -1,8 +1,8 @@
-import { updateTask } from "../services/taskService";
-import { Button } from "./Button";
+import { updateTask } from "../../services/taskService";
+import Button from "../Button";
 import { WithContext as InputTags } from "react-tag-input";
 
-export const EditTask = ({
+const EditTask = ({
     task,
     setTask,
     setLoading,
@@ -137,3 +137,5 @@ export const EditTask = ({
         </main>
     );
 };
+
+export default EditTask;
