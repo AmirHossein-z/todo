@@ -4,4 +4,5 @@ I 'm using this design for my project: (https://www.figma.com/community/file/109
 which was made (by https://www.figma.com/@zoomxrist)
 
 for see project run:
+npm install
 npm run dev
