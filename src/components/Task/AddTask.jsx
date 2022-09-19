@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTask } from "../../services/taskService";
 import Button from "../Button";
@@ -7,15 +6,9 @@ import Loading from "../Loading";
 import { WithContext as InputTags } from "react-tag-input";
 
 const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
-    const inputRef = useRef(null);
     const navigate = useNavigate();
     const [task, setTask] = useState({});
     const [tags, setTags] = useState([]);
-
-    // auto focus on first input when addTask component is mounted
-    useEffect(() => {
-        inputRef.current.focus();
-    }, []);
 
     // update value of inputs with every change happend
     const onTaskChange = (e) => {
@@ -80,7 +73,6 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
                                 placeholder="title"
                                 name="title"
                                 id="title"
-                                ref={inputRef}
                                 className="text-sm py-1.5 px-1 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded outline-none"
                                 onChange={onTaskChange}
                             />
