@@ -8,3 +8,8 @@ for see project run:
     $ npm install;
     $ npm run dev;
 
+**preview:**
+
+[Desktop preview](https://drive.google.com/file/d/1-oFbxOFAuOWLGi9tk0OhV-CUE4FLnr6C/view?usp=sharing)
+
+[Mobile preview](https://drive.google.com/file/d/1ny9sqexssUSp2Jn1XbqOkasPjp9d1Lt3/view?usp=sharing)
