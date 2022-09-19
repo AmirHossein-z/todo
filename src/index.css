@@ -36,7 +36,7 @@ body {
 }
 
 .fade-in-from-right {
-    transition: all ease-out 0.7s;
+    transition: all ease-out 0.6s;
     animation-name: fade-in-from-right;
     animation-duration: 700ms;
     animation-iteration-count: 1;
@@ -44,7 +44,7 @@ body {
 @keyframes fade-in-from-right {
     0% {
         opacity: 0;
-        transform: translateX(208px);
+        transform: translateX(128px);
     }
     ,
     100% {
@@ -77,30 +77,65 @@ body {
 
 .ReactTags__selected {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     row-gap: 10px;
-    column-gap: 2px;
+    column-gap: 5px;
     margin-bottom: 10px;
 }
 
 .ReactTags__selected .ReactTags__tag {
     background-color: rgba(148, 173, 207, 1);
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 14px;
+    font-style: bold;
     color: #38404b;
-    padding: 10px;
-    margin-right: 8px;
+    padding: 4px;
+    text-align: center;
 }
 
 .ReactTags__selected .ReactTags__remove {
     color: rgba(185, 28, 28);
-    margin-left: 10px;
-    font-size: 23px;
+    margin-right: 5px;
+    font-size: 16px;
+    float: right;
 }
 /* .ReactTags__editTagInput {
     background-color: red;
 } */
-.ReactTags__editTagInputField {
+/* .ReactTags__editTagInputField {
     background-color: hotpink;
-}
+} */
 /* ReactTags__clearAll   */
+
+@media (min-width: 640px) {
+    .ReactTags__selected {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .ReactTags__selected .ReactTags__tag {
+        padding: 5px;
+        font-size: 16px;
+        margin-right: 6px;
+    }
+    .ReactTags__selected .ReactTags__remove {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .ReactTags__selected {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+    .ReactTags__selected .ReactTags__tag {
+        font-size: 17px;
+        padding: 5px;
+    }
+    .ReactTags__selected .ReactTags__remove {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ReactTags__selected {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
