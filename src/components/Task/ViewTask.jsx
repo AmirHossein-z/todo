@@ -157,12 +157,12 @@ const ViewTask = ({
                                 <span
                                     onClick={() => {
                                         viewRef.current.classList.add(
-                                            "translate-x-52",
+                                            "translate-x-32",
                                             "opacity-0"
                                         );
                                         setTimeout(() => {
                                             setViewState(false);
-                                        }, 800);
+                                        }, 700);
                                     }}
                                     className="cursor-pointer"
                                 >

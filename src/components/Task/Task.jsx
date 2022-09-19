@@ -3,7 +3,6 @@ import { Draggable } from "react-beautiful-dnd";
 
 const Task = ({ task, index, changeTaskState }) => {
     const navigate = useNavigate();
-
     return (
         <Draggable draggableId={String(task.id)} index={index}>
             {(provided) => (
@@ -31,7 +30,7 @@ const Task = ({ task, index, changeTaskState }) => {
                             fill="currentColor"
                             className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer mr-1"
                             onClick={() => {
-                                navigate(`/tasks/${task.id}`);
+                                navigate(`/tasks/${task?.id}`);
                             }}
                         >
                             <path d="M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
