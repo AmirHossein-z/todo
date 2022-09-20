@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useGetAllTags from "../../hooks/useGetAllTags";
 import Loading from "../Loading";
+import TasksContainer from "../Task/TasksContainer";
 
 const Tag = () => {
     const { tagId } = useParams();
@@ -8,9 +9,10 @@ const Tag = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="transition-all duration-1000 linear max-w-sm md:max-w-xl lg:max-w-3xl m-auto md:m-0">
+        // <div className="transition-all duration-1000 linear max-w-sm md:max-w-xl lg:max-w-3xl m-auto md:m-0">
+        <TasksContainer>
             <h2 className="text-base md:text-lg xl:text-xl text-customText tracking-wider font-bold p-5">
-                {/* all tasks with <span className="text-yellow-100">#{tagId}</span> */}
+                all tasks with <span className="text-yellow-100">#{tagId}</span>
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
                 {loading ? (
@@ -54,7 +56,8 @@ const Tag = () => {
                     ))
                 ) : null}
             </div>
-        </div>
+        </TasksContainer>
+        // </div>
     );
 };
 
