@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const TagButton = () => {
@@ -9,7 +10,7 @@ const TagButton = () => {
             location.pathname === "/tasks/" ? (
                 <Link to={"/tasks/tags"}>
                     <div>
-                        <span className="md:text-lg hidden md:block  hover:bg-customText hover:text-customdark rounded-md p-2 px-2.5 transition-all duration-300 linear">
+                        <span className="md:text-base hidden md:block border border-customText hover:bg-customText hover:text-customdark rounded-md p-2 px-2.5 transition-all duration-300 linear">
                             Tags
                         </span>
                         <svg
@@ -31,4 +32,4 @@ const TagButton = () => {
     );
 };
 
-export default TagButton;
+export default memo(TagButton);

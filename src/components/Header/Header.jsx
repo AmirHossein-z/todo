@@ -1,6 +1,7 @@
 import { memo } from "react";
 import AddButton from "./AddButton";
 import GithubLogo from "./GithubLogo";
+import HomeButton from "./HomeButton";
 import TagButton from "./TagButton";
 
 const Header = () => {
@@ -12,6 +13,7 @@ const Header = () => {
                     <AddButton />
                     <TagButton />
                     <GithubLogo />
+                    <HomeButton />
                 </div>
             </div>
         </header>
