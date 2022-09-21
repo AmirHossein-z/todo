@@ -4,9 +4,11 @@ const Button = ({
     bgColor,
     borderColor,
     customStyles,
+    type = "button",
 }) => {
     return (
         <button
+            type={type}
             className={`py-2 px-2.5 text-base border border-${borderColor} bg-${bgColor} text-${textColor} rounded-md transition-all duration-300 ease-in ${customStyles}`}
         >
             {children}

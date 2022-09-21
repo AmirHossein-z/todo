@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const HomeButton = () => {
     const location = useLocation();
-    console.log(location.pathname);
 
     return (
         <>
