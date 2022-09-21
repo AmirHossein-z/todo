@@ -5,6 +5,7 @@ import { getTask, deleteTask } from "../../services/taskService";
 import EditTask from "./EditTask";
 import Loading from "../Loading";
 import TagTicket from "../Tag/TagTicket";
+import { toast } from "react-toastify";
 
 const ViewTask = ({
     loading,
@@ -95,6 +96,7 @@ const ViewTask = ({
         try {
             const { status } = await deleteTask(taskId, location.pathname);
             if (status === 200) {
+                toast.error("Task was deleted !");
                 if (task.status) {
                     const prevTasks = [...completedTasks];
                     const taskIndex = completedTasks.findIndex(

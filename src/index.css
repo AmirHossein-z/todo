@@ -107,6 +107,10 @@ body {
 } */
 /* ReactTags__clearAll   */
 
+.Toastify__toast {
+    font-family: "Roboto";
+}
+
 @media (min-width: 640px) {
     .ReactTags__selected {
         grid-template-columns: 1fr 1fr 1fr 1fr;
