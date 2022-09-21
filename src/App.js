@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Zoom, ToastContainer, toast } from "react-toastify";
 
 //hooks
 import useGetAllCompletedTasks from "./hooks/useGetAllCompletedTasks";
@@ -14,6 +15,7 @@ import useGetAllTasks from "./hooks/useGetAllTasks";
 
 // components
 import { AddTask, Header, Tag, Tags, Tasks, ViewTask } from "./components";
+import { useEffect } from "react";
 
 const App = () => {
     const [loading, setLoading] = useState(false);
@@ -24,6 +26,50 @@ const App = () => {
     const [tasks, setTasks] = useGetAllTasks(setLoading);
     const [completedTasks, setCompletedTasks] =
         useGetAllCompletedTasks(setLoading);
+
+    const checkInternetStatus = async () => {
+        if (!window.navigator.onLine) return false;
+
+        // avoid CORS errors with a request to your own origin
+        const url = new URL(window.location.origin);
+
+        // random value to prevent cached responses
+        url.searchParams.set(
+            "rand",
+            Math.random().toString(36).substring(2, 15)
+        );
+
+        try {
+            const response = await fetch(url.toString(), {
+                method: "HEAD",
+            });
+
+            return response.ok;
+        } catch {
+            return false;
+        }
+    };
+
+    useEffect(() => {
+        let prevStatus = true;
+        const intervalId = setInterval(async () => {
+            const status = await checkInternetStatus();
+
+            if (!prevStatus && !status) {
+                prevStatus = false;
+            } else if (!status) {
+                toast.error("You are offline!", {
+                    autoClose: false,
+                });
+
+                prevStatus = false;
+            } else {
+                prevStatus = true;
+            }
+        }, 10000);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     // toggle task status whenever a task is clicked
     const changeTaskState = async (task) => {
@@ -101,6 +147,7 @@ const App = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+            <ToastContainer newestOnTop={true} transition={Zoom} theme="dark" />
             <Header />
             <Routes>
                 <Route path="/" element={<Navigate to={"/tasks"} />} />
