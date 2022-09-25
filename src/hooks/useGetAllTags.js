@@ -17,9 +17,8 @@ const filterTasksByTag = (completedTasks, tasks, tagId) => {
 
 const useGetAllTags = (tagId) => {
     const [loading, setLoading] = useState(false);
-    const [tasks, setTasks] = useGetAllTasks(setLoading);
-    const [completedTasks, setCompletedTasks] =
-        useGetAllCompletedTasks(setLoading);
+    const [tasks] = useGetAllTasks(setLoading);
+    const [completedTasks] = useGetAllCompletedTasks(setLoading);
 
     const result = filterTasksByTag(completedTasks, tasks, tagId);
 

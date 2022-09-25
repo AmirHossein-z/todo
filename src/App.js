@@ -147,7 +147,11 @@ const App = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-            <ToastContainer newestOnTop={true} transition={Zoom} theme="dark" />
+            <ToastContainer
+                newestOnTop={true}
+                transition={Zoom}
+                theme="colored"
+            />
             <Header />
             <Routes>
                 <Route path="/" element={<Navigate to={"/tasks"} />} />

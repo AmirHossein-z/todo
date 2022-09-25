@@ -7,13 +7,15 @@ import TagButton from "./TagButton";
 const Header = () => {
     return (
         <header>
-            <div className="flex justify-between items-center p-2.5 xl:p-3 text-customText font-bold">
-                <h1 className="text-lg lg:text-xl tracking-wider">Todo app</h1>
+            <div className="flex justify-between items-center p-2.5 text-customText font-bold">
+                <h1 className="text-base lg:text-lg tracking-wider">
+                    Todo app
+                </h1>
                 <div className="flex items-center gap-x-3">
                     <AddButton />
                     <TagButton />
-                    <GithubLogo />
                     <HomeButton />
+                    <GithubLogo />
                 </div>
             </div>
         </header>
