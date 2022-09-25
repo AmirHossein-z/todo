@@ -1,16 +1,14 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useGetAllTags from "../../hooks/useGetAllTags";
 import Loading from "../Loading";
 import TasksContainer from "../Task/TasksContainer";
-import { AiFillEye } from "react-icons/ai";
+import ViewTaskButton from "../Task/ViewTaskButton";
 
 const Tag = () => {
     const { tagId } = useParams();
     const [loading, result] = useGetAllTags(tagId);
-    const navigate = useNavigate();
 
     return (
-        // <div className="transition-all duration-1000 linear max-w-sm md:max-w-xl lg:max-w-3xl m-auto md:m-0">
         <TasksContainer>
             <h2 className="text-base md:text-lg xl:text-xl text-customText tracking-wider font-bold p-5">
                 all tasks with <span className="text-yellow-100">#{tagId}</span>
@@ -29,20 +27,7 @@ const Tag = () => {
                                     {task.title}
                                 </h3>
                             </div>
-                            <div className="p-1">
-                                <AiFillEye
-                                    className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer"
-                                    onClick={() => {
-                                        navigate(
-                                            `/${
-                                                task?.status
-                                                    ? "completed-tasks/"
-                                                    : "tasks/"
-                                            }${task?.id}`
-                                        );
-                                    }}
-                                />
-                            </div>
+                            <ViewTaskButton status={task.status} id={task.id} />
                         </div>
                     ))
                 ) : null}

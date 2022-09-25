@@ -1,11 +1,8 @@
 import { Draggable } from "react-beautiful-dnd";
-import { useNavigate } from "react-router-dom";
-import { AiFillEye } from "react-icons/ai";
 import { HiBadgeCheck } from "react-icons/hi";
+import ViewTaskButton from "./ViewTaskButton";
 
 const CompletedTask = ({ task, index, changeTaskState }) => {
-    const navigate = useNavigate();
-
     return (
         <Draggable draggableId={String(task.id)} index={index}>
             {(provided) => (
@@ -26,14 +23,7 @@ const CompletedTask = ({ task, index, changeTaskState }) => {
                             {task.title}
                         </h3>
                     </div>
-                    <div className="p-1">
-                        <AiFillEye
-                            className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer"
-                            onClick={() => {
-                                navigate(`/completed-tasks/${task.id}`);
-                            }}
-                        />
-                    </div>
+                    <ViewTaskButton status={task.status} id={task.id} />
                 </div>
             )}
         </Draggable>

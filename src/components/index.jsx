@@ -7,6 +7,7 @@ export { default as Task } from "./Task/Task";
 export { default as ViewTask } from "./Task/ViewTask";
 export { default as DragTaskAlarm } from "./Task/DragTaskAlarm";
 export { default as TasksContainer } from "./Task/TasksContainer";
+export { default as ViewTaskButton } from "./Task/ViewTaskButton";
 
 // Tag components
 export { default as Tag } from "./Tag/Tag";
