@@ -1,7 +1,7 @@
 import { AiFillEye } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-const ViewTaskButton = ({ status, id }) => {
+const ViewTaskButton = ({ id }) => {
     const navigate = useNavigate();
 
     return (
@@ -9,7 +9,7 @@ const ViewTaskButton = ({ status, id }) => {
             <AiFillEye
                 className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer"
                 onClick={() => {
-                    navigate(`/${status ? "completed-tasks/" : "tasks/"}${id}`);
+                    navigate(`/tasks/${id}`);
                 }}
             />
         </div>

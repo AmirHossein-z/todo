@@ -33,8 +33,7 @@ const EditTask = ({
             setLoading(true);
             const { status: requestStatus, data } = await updateTask(
                 { ...values, tags: tags },
-                taskId,
-                task.status
+                taskId
             );
             if (requestStatus === 200) {
                 toast.info("Task Updated!");
@@ -136,7 +135,7 @@ const EditTask = ({
                             name="tags"
                             id="tags"
                             inputFieldPosition="bottom"
-                            delimiters={[188, 13]}
+                            delimiters={[13, 32]}
                         />
                         <span className="text-sm lg:text-base text-yellow-100 mt-2 grid gap-y-1">
                             press enter or space key to add another tag

@@ -21,7 +21,7 @@ const Task = ({ task, index, changeTaskState }) => {
                             {task.title}
                         </h3>
                     </div>
-                    <ViewTaskButton status={task.status} id={task.id} />
+                    <ViewTaskButton id={task.id} />
                 </div>
             )}
         </Draggable>

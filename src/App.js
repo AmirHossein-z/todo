@@ -1,8 +1,4 @@
-import {
-    addCompletedTask,
-    createTask,
-    deleteTask,
-} from "./services/taskService";
+import { updateTask } from "./services/taskService";
 
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -10,7 +6,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Zoom, ToastContainer, toast } from "react-toastify";
 
 //hooks
-import useGetAllCompletedTasks from "./hooks/useGetAllCompletedTasks";
 import useGetAllTasks from "./hooks/useGetAllTasks";
 
 // components
@@ -18,14 +13,18 @@ import { AddTask, Header, Tag, Tags, Tasks, ViewTask } from "./components";
 import { useEffect } from "react";
 
 const App = () => {
-    const [loading, setLoading] = useState(false);
     const [dropShowBox, setDropShowBox] = useState({
         state: false,
         droppableId: null,
     });
-    const [tasks, setTasks] = useGetAllTasks(setLoading);
-    const [completedTasks, setCompletedTasks] =
-        useGetAllCompletedTasks(setLoading);
+    const [
+        tasks,
+        setTasks,
+        completedTasks,
+        setCompletedTasks,
+        loading,
+        setLoading,
+    ] = useGetAllTasks();
 
     const checkInternetStatus = async () => {
         if (!window.navigator.onLine) return false;
@@ -75,15 +74,10 @@ const App = () => {
     const changeTaskState = async (task) => {
         try {
             const prevTask = task;
-            let result;
-            if (prevTask.status) {
-                result = await deleteTask(
-                    task.id,
-                    `/completedTasks/${task.id}`
-                );
-            } else {
-                result = await deleteTask(task.id, `/tasks/${task.id}`);
-            }
+            const result = await updateTask(
+                { ...task, status: !task.status },
+                task.id
+            );
             if (result.status === 200) {
                 if (prevTask.status) {
                     // delete from completed tasks
@@ -95,11 +89,7 @@ const App = () => {
                     setCompletedTasks([...prevCompletedTasks]);
 
                     // add to tasks
-                    setTasks([
-                        ...tasks,
-                        { ...prevTask, status: !prevTask.status },
-                    ]);
-                    await createTask({ ...prevTask, status: !prevTask.status });
+                    setTasks([...tasks, { ...prevTask, status: false }]);
                 } else {
                     // delete from tasks
                     const prevTasks = [...tasks];
@@ -107,17 +97,13 @@ const App = () => {
                         (item) => item.id === task.id
                     );
                     prevTasks.splice(taskIndex, 1);
+                    setTasks([...prevTasks]);
 
                     // add to completed tasks
-                    setTasks([...prevTasks]);
                     setCompletedTasks([
                         ...completedTasks,
-                        { ...prevTask, status: !prevTask.status },
+                        { ...prevTask, status: true },
                     ]);
-                    await addCompletedTask({
-                        ...prevTask,
-                        status: !prevTask.status,
-                    });
                 }
             }
         } catch (err) {
@@ -182,19 +168,6 @@ const App = () => {
                 />
                 <Route
                     path="/tasks/:taskId"
-                    element={
-                        <ViewTask
-                            setLoading={setLoading}
-                            loading={loading}
-                            tasks={tasks}
-                            setTasks={setTasks}
-                            completedTasks={completedTasks}
-                            setCompletedTasks={setCompletedTasks}
-                        />
-                    }
-                />
-                <Route
-                    path="/completed-tasks/:taskId"
                     element={
                         <ViewTask
                             setLoading={setLoading}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { confirmAlert } from "react-confirm-alert";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getTask, deleteTask } from "../../services/taskService";
 import EditTask from "./EditTask";
 import Loading from "../Loading";
@@ -20,7 +20,6 @@ const ViewTask = ({
 }) => {
     const { taskId } = useParams();
     const navigate = useNavigate();
-    const location = useLocation();
     const [task, setTask] = useState({});
     const viewRef = useRef(null);
     const [viewState, setViewState] = useState(true);
@@ -31,10 +30,7 @@ const ViewTask = ({
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const { status, data } = await getTask(
-                    taskId,
-                    location.pathname
-                );
+                const { status, data } = await getTask(taskId);
                 if (status === 200) {
                     setTask(data);
                     setTags(data.tags);
@@ -86,20 +82,20 @@ const ViewTask = ({
     const removeTask = async () => {
         setLoading(true);
         try {
-            const { status } = await deleteTask(taskId, location.pathname);
+            const { status } = await deleteTask(taskId);
             if (status === 200) {
                 toast.error("Task was deleted !");
                 if (task.status) {
                     const prevTasks = [...completedTasks];
                     const taskIndex = completedTasks.findIndex(
-                        (item) => item.id === taskId
+                        (item) => item.id === parseInt(taskId)
                     );
                     prevTasks.splice(taskIndex, 1);
                     setCompletedTasks(prevTasks);
                 } else {
                     const prevTasks = [...tasks];
                     const taskIndex = tasks.findIndex(
-                        (item) => item.id === taskId
+                        (item) => item.id === parseInt(taskId)
                     );
                     prevTasks.splice(taskIndex, 1);
                     setTasks(prevTasks);

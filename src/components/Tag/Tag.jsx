@@ -6,7 +6,7 @@ import ViewTaskButton from "../Task/ViewTaskButton";
 
 const Tag = () => {
     const { tagId } = useParams();
-    const [loading, result] = useGetAllTags(tagId);
+    const [loading, filteredTasks] = useGetAllTags(tagId);
 
     return (
         <TasksContainer>
@@ -16,8 +16,8 @@ const Tag = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
                 {loading ? (
                     <Loading />
-                ) : result?.length > 0 ? (
-                    result.map((task, index) => (
+                ) : filteredTasks?.length > 0 ? (
+                    filteredTasks.map((task, index) => (
                         <div
                             className="flex justify-between items-center text-customText shadow-[9px_7px_17px_rgba(0,0,0,0.5)] rounded-2xl p-2 sm:p-2.5 transition-transform duration-100 ease-in active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] fade-in-from-bottom cursor-pointer"
                             key={index}
@@ -27,7 +27,7 @@ const Tag = () => {
                                     {task.title}
                                 </h3>
                             </div>
-                            <ViewTaskButton status={task.status} id={task.id} />
+                            <ViewTaskButton id={task.id} />
                         </div>
                     ))
                 ) : null}

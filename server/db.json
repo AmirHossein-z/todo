@@ -1,42 +1,24 @@
 {
-  "tasks": [
-    {
-      "title": "test",
-      "body": "test",
-      "status": false,
-      "tags": [
+    "tasks": [
         {
-          "id": "tag1",
-          "text": "tag1"
-        },
-        {
-          "id": "tag2",
-          "text": "tag2"
-        },
-        {
-          "id": "tag3",
-          "text": "tag3"
+            "title": "test",
+            "body": "test",
+            "status": false,
+            "tags": [
+                {
+                    "id": "b",
+                    "text": "b"
+                },
+                {
+                    "id": "a",
+                    "text": "a"
+                },
+                {
+                    "id": "bc",
+                    "text": "bc"
+                }
+            ],
+            "id": 1
         }
-      ],
-      "id": 1
-    }
-  ],
-  "completedTasks": [
-    {
-      "title": "test2",
-      "body": "test2",
-      "status": true,
-      "tags": [
-        {
-          "id": "tag1",
-          "text": "tag1"
-        },
-        {
-          "id": "test",
-          "text": "test"
-        }
-      ],
-      "id": 2
-    }
-  ]
+    ]
 }
