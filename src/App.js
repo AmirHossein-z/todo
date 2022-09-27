@@ -1,6 +1,6 @@
 import { updateTask } from "./services/taskService";
 
-import { useState } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Zoom, ToastContainer, toast } from "react-toastify";
@@ -9,8 +9,12 @@ import { Zoom, ToastContainer, toast } from "react-toastify";
 import useGetAllTasks from "./hooks/useGetAllTasks";
 
 // components
-import { AddTask, Header, Tag, Tags, Tasks, ViewTask } from "./components";
-import { useEffect } from "react";
+import { Header, Tasks, Loading } from "./components";
+const AddTask = lazy(() => import("./components/Task/AddTask"));
+const Tags = lazy(() => import("./components/Tag/Tags"));
+const Tag = lazy(() => import("./components/Tag/Tag"));
+const ViewTask = lazy(() => import("./components/Task/ViewTask"));
+const NotFound = lazy(() => import("./components/NotFound"));
 
 const App = () => {
     const [dropShowBox, setDropShowBox] = useState({
@@ -158,34 +162,58 @@ const App = () => {
                 <Route
                     path="/tasks/add"
                     element={
-                        <AddTask
-                            loading={loading}
-                            setLoading={setLoading}
-                            tasks={tasks}
-                            setTasks={setTasks}
-                        />
+                        <Suspense fallback={<Loading />}>
+                            <AddTask
+                                loading={loading}
+                                setLoading={setLoading}
+                                tasks={tasks}
+                                setTasks={setTasks}
+                            />
+                        </Suspense>
                     }
                 />
                 <Route
                     path="/tasks/:taskId"
                     element={
-                        <ViewTask
-                            setLoading={setLoading}
-                            loading={loading}
-                            tasks={tasks}
-                            setTasks={setTasks}
-                            completedTasks={completedTasks}
-                            setCompletedTasks={setCompletedTasks}
-                        />
+                        <Suspense fallback={<Loading />}>
+                            <ViewTask
+                                setLoading={setLoading}
+                                loading={loading}
+                                tasks={tasks}
+                                setTasks={setTasks}
+                                completedTasks={completedTasks}
+                                setCompletedTasks={setCompletedTasks}
+                            />
+                        </Suspense>
                     }
                 />
                 <Route
                     path="/tasks/tags"
                     element={
-                        <Tags tasks={tasks} completedTasks={completedTasks} />
+                        <Suspense fallback={<Loading />}>
+                            <Tags
+                                tasks={tasks}
+                                completedTasks={completedTasks}
+                            />
+                        </Suspense>
                     }
                 />
-                <Route path="/tasks/tags/:tagId" element={<Tag />} />
+                <Route
+                    path="/tasks/tags/:tagId"
+                    element={
+                        <Suspense fallback={<Loading />}>
+                            <Tag />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="*"
+                    element={
+                        <Suspense fallback={<Loading />}>
+                            <NotFound />
+                        </Suspense>
+                    }
+                />
             </Routes>
         </DragDropContext>
     );
