@@ -13,6 +13,10 @@ const filterTasksByTag = (tasks, tagId) => {
     return result;
 };
 
+/**
+ * @description a customhook for getting all tags which tagId is provided
+ * @return loading & filtered tasks states
+ */
 const useGetAllTags = (tagId) => {
     const [loading, setLoading] = useState(false);
     const [tasks, setTasks] = useState([]);

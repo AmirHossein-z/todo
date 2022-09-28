@@ -54,7 +54,7 @@ const EditTask = ({
                     setTasks([...prevTasks]);
                 }
                 await setTimeout(() => {
-                    setViewState(true);
+                    setViewState(false);
                 }, 0);
             }
         } catch (err) {

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getTask, deleteTask } from "../../services/taskService";
 import EditTask from "./EditTask";
 import Loading from "../Loading";
+import NotFound from "../NotFound";
 import TagTicket from "../Tag/TagTicket";
 import { toast } from "react-toastify";
 import { FiEdit } from "react-icons/fi";
@@ -22,7 +23,7 @@ const ViewTask = ({
     const navigate = useNavigate();
     const [task, setTask] = useState({});
     const viewRef = useRef(null);
-    const [viewState, setViewState] = useState(true);
+    const [showEditTask, setShowEditTask] = useState(false);
     const [tags, setTags] = useState([]);
 
     // get task info and update task state in mounting stage
@@ -37,6 +38,7 @@ const ViewTask = ({
                 }
             } catch (err) {
                 console.log(err);
+                setTask({ errorOccured: true });
             } finally {
                 setLoading(false);
             }
@@ -109,83 +111,85 @@ const ViewTask = ({
         }
     };
 
+    if (loading) {
+        return <Loading />;
+    } else if (task.errorOccured) {
+        return <NotFound />;
+    } else if (showEditTask) {
+        return (
+            <EditTask
+                task={task}
+                setTask={setTask}
+                setLoading={setLoading}
+                taskId={taskId}
+                tasks={tasks}
+                setTasks={setTasks}
+                setViewState={setShowEditTask}
+                completedTasks={completedTasks}
+                setCompletedTasks={setCompletedTasks}
+                tags={tags}
+                setTags={setTags}
+            />
+        );
+    }
+
     return (
-        <>
-            {loading ? (
-                <Loading />
-            ) : viewState ? (
-                <main
-                    className="my-5 p-5 transition-all duration-700 ease-in fade-in-from-bottom md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
-                    ref={viewRef}
-                >
-                    <div className="text-lg flex justify-between items-center">
-                        <h1 className="text-customText text-lg sm:text-xl font-bold">
-                            {task.title}
-                        </h1>
-                        <div>
-                            <div className="flex gap-x-3">
-                                <span
-                                    onClick={confirmDelete}
-                                    className="cursor-pointer"
-                                >
-                                    <RiDeleteBin6Line className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-red-500 active:text-red-700" />
-                                    <span className="text-red-500 active:text-red-700 hover:text-red-700 lg:text-lg font-bold hidden md:block">
-                                        Delete
-                                    </span>
-                                </span>
-                                <span
-                                    onClick={() => {
-                                        viewRef.current.classList.add(
-                                            "translate-x-32",
-                                            "opacity-0"
-                                        );
-                                        setTimeout(() => {
-                                            setViewState(false);
-                                        }, 700);
-                                    }}
-                                    className="cursor-pointer"
-                                >
-                                    <FiEdit className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-yellow-500 active:text-yellow-700" />
-                                    <span className="text-yellow-500 active:text-yellow-700 hover:text-yellow-700 lg:text-lg font-bold hidden md:block">
-                                        Edit
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
+        <main
+            className="my-5 p-5 transition-all duration-700 ease-in fade-in-from-bottom md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
+            ref={viewRef}
+        >
+            <div className="text-lg flex justify-between items-center">
+                <h1 className="text-customText text-lg sm:text-xl font-bold">
+                    {task.title}
+                </h1>
+                <div>
+                    <div className="flex gap-x-3">
+                        <span
+                            onClick={confirmDelete}
+                            className="cursor-pointer"
+                        >
+                            <RiDeleteBin6Line className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-red-500 active:text-red-700" />
+                            <span className="text-red-500 active:text-red-700 hover:text-red-700 lg:text-lg font-bold hidden md:block">
+                                Delete
+                            </span>
+                        </span>
+                        <span
+                            onClick={() => {
+                                viewRef.current.classList.add(
+                                    "translate-x-32",
+                                    "opacity-0"
+                                );
+                                setTimeout(() => {
+                                    setShowEditTask(true);
+                                }, 700);
+                            }}
+                            className="cursor-pointer"
+                        >
+                            <FiEdit className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-yellow-500 active:text-yellow-700" />
+                            <span className="text-yellow-500 active:text-yellow-700 hover:text-yellow-700 lg:text-lg font-bold hidden md:block">
+                                Edit
+                            </span>
+                        </span>
                     </div>
-                    <div className="my-5 sm:my-4 md:my-3  bg-customText bg-opacity-20 w-full h-0.5 rounded"></div>
-                    <div className="text-customText text-sm sm:text-base break-words m-0 p-1 sm:p-1.5">
-                        <p>{task.body}</p>
-                    </div>
-                    <div className="mt-5">
-                        <h2 className="text-customText text-base sm:text-lg mb-3">
-                            Tags
-                        </h2>
-                        <div className="text-sm sm:text-base flex gap-x-6">
-                            {tags
-                                ? tags.map((tag) => (
-                                      <TagTicket key={tag.id} text={tag.text} />
-                                  ))
-                                : null}
-                        </div>
-                    </div>
-                </main>
-            ) : (
-                <EditTask
-                    task={task}
-                    setTask={setTask}
-                    setLoading={setLoading}
-                    taskId={taskId}
-                    tasks={tasks}
-                    setTasks={setTasks}
-                    setViewState={setViewState}
-                    completedTasks={completedTasks}
-                    setCompletedTasks={setCompletedTasks}
-                    tags={tags}
-                    setTags={setTags}
-                />
-            )}
-        </>
+                </div>
+            </div>
+            <div className="my-5 sm:my-4 md:my-3  bg-customText bg-opacity-20 w-full h-0.5 rounded"></div>
+            <div className="text-customText text-sm sm:text-base break-words m-0 p-1 sm:p-1.5">
+                <p>{task.body}</p>
+            </div>
+            <div className="mt-5">
+                <h2 className="text-customText text-base sm:text-lg mb-3">
+                    Tags
+                </h2>
+                <div className="text-sm sm:text-base flex gap-x-6">
+                    {tags
+                        ? tags.map((tag) => (
+                              <TagTicket key={tag.id} text={tag.text} />
+                          ))
+                        : null}
+                </div>
+            </div>
+        </main>
     );
 };
 

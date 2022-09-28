@@ -5,14 +5,14 @@ import { HiHome } from "react-icons/hi";
 const HomeButton = () => {
     const location = useLocation();
 
+    if (location.pathname === "/tasks" || location.pathname === "/tasks/") {
+        return null;
+    }
+
     return (
-        <>
-            {location.pathname !== "/tasks" ? (
-                <Link to="/tasks">
-                    <HiHome className="w-8 h-8 text-customText xl:w-9 xl:h-9 cursor-pointer" />
-                </Link>
-            ) : null}
-        </>
+        <Link to="/tasks">
+            <HiHome className="w-8 h-8 text-customText xl:w-9 xl:h-9 cursor-pointer" />
+        </Link>
     );
 };
 
