@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:2000";
+const URL = "https://my-json-server.typicode.com/AmirHossein-z/todo-server";
 
 /**
  * @description get all tasks from url
