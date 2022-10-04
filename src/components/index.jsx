@@ -12,7 +12,7 @@ export { default as ViewTaskButton } from "./Task/ViewTaskButton";
 // Tag components
 export { default as Tag } from "./Tag/Tag";
 export { default as TagTicket } from "./Tag/TagTicket";
-export { default as Tags } from "./Tag/Tags";
+export { default as TagsList } from "./Tag/TagsList";
 
 // Header components
 export { default as TagButton } from "./Header/TagButton";

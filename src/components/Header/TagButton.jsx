@@ -12,7 +12,7 @@ const TagButton = () => {
     return (
         <Link to={"/tasks/tags"}>
             <div>
-                <span className="md:text-base lg:text-lg hidden md:block hover:bg-customText hover:text-customdark rounded-md p-2 px-2.5 transition-all duration-300 linear">
+                <span className="md:text-base lg:text-lg hidden md:block border-2 border-transparent hover:border-customText font-medium rounded-lg py-1.5 px-3.5 transition-all duration-300 ease-linear">
                     Tags
                 </span>
                 <HiOutlineHashtag className="w-7 h-7 text-customText md:hidden" />

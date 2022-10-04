@@ -2,7 +2,7 @@ import loadingSVG from "../assets/loading.svg";
 
 const Loading = () => {
     return (
-        <div className="flex justify-center mt-10 animate-bounce">
+        <div className="flex justify-center mt-10">
             <img
                 src={loadingSVG}
                 alt="loading"

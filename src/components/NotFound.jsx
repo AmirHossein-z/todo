@@ -10,7 +10,7 @@ const NotFound = () => {
             </p>
             <Link
                 to="/tasks"
-                className="justify-self-center font-bold md:text-lg"
+                className="justify-self-center font-medium md:text-lg"
             >
                 <u>Go to main page</u>
             </Link>

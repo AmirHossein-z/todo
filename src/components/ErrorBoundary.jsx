@@ -22,7 +22,7 @@ class ErrorBoundary extends Component {
                     <p className="text-base sm:text-lg md:text-xl xl:text-2xl">
                         Something went wrong!
                     </p>
-                    <p className="justify-self-center font-bold md:text-lg">
+                    <p className="justify-self-center font-semi md:text-lg">
                         <i> try it later</i>
                     </p>
                 </div>

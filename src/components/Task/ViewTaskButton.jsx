@@ -7,7 +7,7 @@ const ViewTaskButton = ({ id }) => {
     return (
         <div className="p-1">
             <AiFillEye
-                className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer"
+                className="w-4 h-4 sm:w-5 sm:h-5 cursor-pointer hover:contrast-150"
                 onClick={() => {
                     navigate(`/tasks/${id}`);
                 }}

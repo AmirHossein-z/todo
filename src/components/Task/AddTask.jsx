@@ -61,19 +61,23 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
             >
                 <Form className="grid gap-y-5">
                     <div className="grid gap-y-2">
-                        <label htmlFor="title" className="text-sm md:text-base">
+                        <label
+                            htmlFor="title"
+                            className="text-sm md:text-base font-semibold"
+                        >
                             Title
                         </label>
                         <Field
                             type="text"
                             placeholder="title"
                             name="title"
-                            className="text-sm py-1.5 px-1 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded outline-none"
+                            id="title"
+                            className="text-sm py-1.5 px-3.5 bg-transparent w-full border border-customText border-opacity-50 focus:border-opacity-100 rounded-lg outline-none"
                         />
                         <ErrorMessage
                             name="title"
                             render={(msg) => (
-                                <div className="text-red-500 text-sm font-bold lg:text-base">
+                                <div className="text-red-500 text-sm font-semibold lg:text-base">
                                     <span>{msg}</span>
                                 </div>
                             )}
@@ -82,7 +86,7 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
                     <div className="grid my-3 gap-y-3">
                         <label
                             htmlFor="body"
-                            className="mb-3 text-sm md:text-base"
+                            className="mb-3 text-sm md:text-base font-semibold"
                         >
                             Body
                         </label>
@@ -90,24 +94,29 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
                             as="textarea"
                             name="body"
                             placeholder="body"
-                            className="text-sm w-full min-h-[208px] max-h-52 rounded bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2.5 sm:p-3"
+                            id="body"
+                            className="text-sm w-full min-h-[208px] max-h-52 rounded-lg bg-transparent border border-customText border-opacity-50 focus:border-opacity-100 outline-none p-2.5 sm:p-3"
                         />
                         <ErrorMessage
                             name="body"
                             render={(msg) => (
-                                <div className="text-red-500 text-sm font-bold lg:text-base">
+                                <div className="text-red-500 text-sm font-semibold lg:text-base">
                                     <span>{msg}</span>
                                 </div>
                             )}
                         />
                     </div>
                     <div className="flex flex-col justify-center">
-                        <label htmlFor="tags" className="mb-3 text-base">
+                        <label
+                            htmlFor="tags"
+                            className="mb-3 text-base font-semibold"
+                        >
                             Tags:
                         </label>
                         <InputTags
                             tags={tags}
                             name="tags"
+                            id="tags"
                             handleDelete={handleDeleteTag}
                             handleAddition={handleAdditionTag}
                             handleDrag={handleDrag}
@@ -127,7 +136,7 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
                             textColor="customText"
                             bgColor="customdark"
                             borderColor="customText"
-                            customStyles="text-sm w-full sm:w-1/2 mx-auto hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
+                            customStyles="text-sm sm:text-base font-semibold w-full sm:w-3/4 mx-auto hover:bg-customText hover:text-customdark active:bg-customText active:text-customdark"
                         >
                             Submit
                         </Button>

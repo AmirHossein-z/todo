@@ -2,7 +2,7 @@ import uniqBy from "lodash.uniqby";
 import { useMemo } from "react";
 import TagTicket from "./TagTicket";
 
-const Tags = ({ tasks, completedTasks }) => {
+const TagsList = ({ tasks, completedTasks }) => {
     const tags = useMemo(() => {
         // get All tags from tasks & completed tasks and show uniq tags
         return uniqBy(
@@ -25,4 +25,4 @@ const Tags = ({ tasks, completedTasks }) => {
     );
 };
 
-export default Tags;
+export default TagsList;

@@ -7,7 +7,7 @@ const CompletedTask = ({ task, index, changeTaskState }) => {
         <Draggable draggableId={String(task.id)} index={index}>
             {(provided) => (
                 <div
-                    className="flex justify-between items-center text-customText shadow-[9px_7px_17px_rgba(0,0,0,0.5)] rounded-2xl p-2 sm:p-2.5 transition-transform duration-100 ease-in active:shadow-[inset_0px_0px_10px_rgba(0,0,0,0.3)] fade-in-from-bottom cursor-pointer"
+                    className="flex justify-between items-center text-customText shadow-custom rounded-2xl p-2 sm:p-2.5 transition-all duration-100 ease-in fade-in-from-bottom cursor-pointer"
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
@@ -19,7 +19,7 @@ const CompletedTask = ({ task, index, changeTaskState }) => {
                             }}
                             className="w-4 h-4 sm:w-5 sm:h-5"
                         />
-                        <h3 className="text-base md:text-lg mr-8">
+                        <h3 className="text-base md:text-lg mr-8 font-medium">
                             {task.title}
                         </h3>
                     </div>

@@ -15,12 +15,12 @@ const Tasks = ({
     if (loading) return <Loading />;
 
     return (
-        <main className="grid sm:grid-cols-2 gap-y-10">
+        <main className="grid sm:grid-cols-2 gap-y-10 fade-in-from-bottom">
             <Droppable droppableId="1">
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
                         <div>
-                            <h2 className="p-5 text-base md:text-lg xl:text-xl text-customText tracking-wider font-bold">
+                            <h2 className="p-5 text-base md:text-lg xl:text-xl text-customText tracking-wider font-semibold">
                                 Tasks
                             </h2>
                             {/* show tasks which haven't completed yet */}
@@ -48,7 +48,7 @@ const Tasks = ({
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
                         <div className="">
-                            <h2 className="p-5 text-base md:text-lg xl:text-xl text-customText tracking-wider font-bold">
+                            <h2 className="p-5 text-base md:text-lg xl:text-xl text-customText tracking-wider font-semibold">
                                 Completed
                             </h2>
                             <TasksContainer>

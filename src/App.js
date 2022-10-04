@@ -11,7 +11,7 @@ import useGetAllTasks from "./hooks/useGetAllTasks";
 // components
 import { Header, Tasks, Loading } from "./components";
 const AddTask = lazy(() => import("./components/Task/AddTask"));
-const Tags = lazy(() => import("./components/Tag/Tags"));
+const TagsList = lazy(() => import("./components/Tag/TagsList"));
 const Tag = lazy(() => import("./components/Tag/Tag"));
 const ViewTask = lazy(() => import("./components/Task/ViewTask"));
 const NotFound = lazy(() => import("./components/NotFound"));
@@ -70,6 +70,10 @@ const App = () => {
                 prevStatus = true;
             }
         }, 10000);
+
+        toast.warn(
+            "you can add,edit,delete,view tasks, but changes aren't persisted between operations"
+        );
 
         return () => clearInterval(intervalId);
     }, []);
@@ -132,6 +136,7 @@ const App = () => {
 
     const onDragStart = (start) => {
         const { source } = start;
+        console.log(source);
         setDropShowBox({ state: true, droppableId: source.droppableId });
     };
 
@@ -191,7 +196,7 @@ const App = () => {
                     path="/tasks/tags"
                     element={
                         <Suspense fallback={<Loading />}>
-                            <Tags
+                            <TagsList
                                 tasks={tasks}
                                 completedTasks={completedTasks}
                             />

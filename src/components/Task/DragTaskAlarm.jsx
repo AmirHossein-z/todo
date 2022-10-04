@@ -1,7 +1,7 @@
 import { memo } from "react";
 const DragTaskAlarm = () => {
     return (
-        <p className="text-yellow-100 text-lg xl:text-xl mt-3 mx-auto animate-bounce">
+        <p className="bg-customdark text-yellow-100 text-lg xl:text-xl mt-3 mx-auto font-semibold shake-horizontal">
             Drag Task here
         </p>
     );

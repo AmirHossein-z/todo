@@ -50,26 +50,28 @@ const ViewTask = ({
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
-                    <div className="grid bg-slate-800 p-3 px-5 rounded gap-y-5">
+                    <div className="grid bg-gray-900 p-3 px-5 rounded-lg gap-y-5">
                         <div className="flex justify-center">
-                            <AiFillWarning className="w-14 h-14 text-yellow-500 text-center" />
+                            <AiFillWarning className="w-16 h-16 text-yellow-500 text-center" />
                         </div>
-                        <p className="text-red-500 font-bold text-center my-2">
-                            this note will permamently deleted!!
+                        <p className="text-red-500 font-semibold text-center my-2">
+                            This note will permamently deleted!!
                         </p>
                         <div className="flex justify-between items-center">
                             <button
-                                className="text-black bg-[#66bb6a] py-2 px-3 rounded"
-                                onClick={onClose}
+                                type="button"
+                                className="transition-all duration-300 focus:outline-none text-white bg-green-700 hover:bg-green-800 font-semibold rounded-lg text-base px-5 py-2.5"
+                                onClick={() => onClose()}
                             >
                                 Cancel
                             </button>
                             <button
+                                type="button"
+                                className="transition-all duration-300 focus:outline-none text-white bg-red-700 hover:bg-red-800 font-semibold rounded-lg text-base px-5 py-2.5"
                                 onClick={() => {
                                     removeTask();
                                     onClose();
                                 }}
-                                className="text-white bg-[#d33] py-2 px-3 rounded"
                             >
                                 Delete
                             </button>
@@ -143,13 +145,13 @@ const ViewTask = ({
                     {task.title}
                 </h1>
                 <div>
-                    <div className="flex gap-x-3">
+                    <div className="flex gap-x-5">
                         <span
                             onClick={confirmDelete}
-                            className="cursor-pointer"
+                            className="cursor-pointer flex gap-x-1 items-center text-red-500 hover:text-red-700 active:text-red-700 transition-all duration-300"
                         >
-                            <RiDeleteBin6Line className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-red-500 active:text-red-700" />
-                            <span className="text-red-500 active:text-red-700 hover:text-red-700 lg:text-lg font-bold hidden md:block">
+                            <RiDeleteBin6Line className="w-5 h-5 sm:w-6 sm:h-6 md:w-5 md:h-5" />
+                            <span className="lg:text-lg font-semibold hidden md:block md:text-sm">
                                 Delete
                             </span>
                         </span>
@@ -163,17 +165,17 @@ const ViewTask = ({
                                     setShowEditTask(true);
                                 }, 700);
                             }}
-                            className="cursor-pointer"
+                            className="cursor-pointer flex gap-x-1 items-center text-yellow-500 active:text-yellow-700 hover:text-yellow-700 transition-all duration-300"
                         >
-                            <FiEdit className="w-5 h-5 sm:w-6 sm:h-6 md:hidden text-yellow-500 active:text-yellow-700" />
-                            <span className="text-yellow-500 active:text-yellow-700 hover:text-yellow-700 lg:text-lg font-bold hidden md:block">
+                            <FiEdit className="w-5 h-5 sm:w-6 sm:h-6 md:w-5 md:h-5" />
+                            <span className="lg:text-lg font-semibold hidden md:block md:text-sm">
                                 Edit
                             </span>
                         </span>
                     </div>
                 </div>
             </div>
-            <div className="my-5 sm:my-4 md:my-3  bg-customText bg-opacity-20 w-full h-0.5 rounded"></div>
+            <div className="my-4 sm:my-4 md:my-3 bg-customText bg-opacity-10 w-full h-0.5 rounded-lg"></div>
             <div className="text-customText text-sm sm:text-base break-words m-0 p-1 sm:p-1.5">
                 <p>{task.body}</p>
             </div>

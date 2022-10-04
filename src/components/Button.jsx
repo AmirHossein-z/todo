@@ -9,7 +9,7 @@ const Button = ({
     return (
         <button
             type={type}
-            className={`py-2 px-2.5 text-base border border-${borderColor} bg-${bgColor} text-${textColor} rounded-md transition-all duration-300 ease-in ${customStyles}`}
+            className={`py-2 px-4 text-base border border-${borderColor} bg-${bgColor} text-${textColor} rounded-lg transition-all duration-300 ease-in ${customStyles}`}
         >
             {children}
         </button>
