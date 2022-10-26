@@ -15,7 +15,7 @@ const Tasks = ({
     if (loading) return <Loading />;
 
     return (
-        <main className="grid sm:grid-cols-2 gap-y-10 fade-in-from-bottom">
+        <main className="container grid sm:grid-cols-2 gap-y-10 animate-fade_in_from_bottom m-auto">
             <Droppable droppableId="1">
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>

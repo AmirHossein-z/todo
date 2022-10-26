@@ -7,7 +7,7 @@ const Task = ({ task, index, changeTaskState }) => {
         <Draggable draggableId={String(task.id)} index={index}>
             {(provided) => (
                 <div
-                    className="flex justify-between items-center text-customText rounded-2xl p-2 sm:p-2.5 transition-all duration-100 ease-in shadow-custom fade-in-from-bottom cursor-pointer"
+                    className="flex justify-between items-center text-customText rounded-2xl p-2 sm:p-2.5 transition-all duration-100 ease-in shadow-custom animate-fade_in_from_bottom cursor-pointer"
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}

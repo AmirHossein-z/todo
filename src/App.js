@@ -71,10 +71,6 @@ const App = () => {
             }
         }, 10000);
 
-        toast.warn(
-            "you can add,edit,delete,view tasks, but changes aren't persisted between operations"
-        );
-
         return () => clearInterval(intervalId);
     }, []);
 
@@ -136,7 +132,6 @@ const App = () => {
 
     const onDragStart = (start) => {
         const { source } = start;
-        console.log(source);
         setDropShowBox({ state: true, droppableId: source.droppableId });
     };
 

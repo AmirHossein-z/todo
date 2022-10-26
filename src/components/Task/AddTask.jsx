@@ -51,7 +51,7 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
     if (loading) return <Loading />;
 
     return (
-        <main className="grid my-5 p-5 items-center text-customText fade-in-from-bottom md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto">
+        <main className="grid my-5 p-5 items-center text-customText animate-fade_in_from_bottom md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto">
             <Formik
                 initialValues={{ title: "", body: "" }}
                 validationSchema={taskSchema}

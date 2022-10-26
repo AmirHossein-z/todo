@@ -14,7 +14,7 @@ const Tag = () => {
     } else if (filteredTasks?.length > 0) {
         FilteredTasks = filteredTasks.map((task, index) => (
             <div
-                className="flex justify-between items-center text-customText rounded-2xl p-2 sm:p-2.5 transition-all duration-100 ease-in fade-in-from-bottom cursor-pointer shadow-custom"
+                className="flex justify-between items-center text-customText rounded-2xl p-2 sm:p-2.5 transition-all duration-100 ease-in animate-fade_in_from_bottom cursor-pointer shadow-custom"
                 key={index}
             >
                 <div className="flex items-center gap-x-3">

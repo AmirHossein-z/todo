@@ -137,7 +137,7 @@ const ViewTask = ({
 
     return (
         <main
-            className="my-5 p-5 transition-all duration-700 ease-in fade-in-from-bottom md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
+            className="my-5 p-5 transition-all duration-700 ease-in animate-fade_in_from_bottom md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
             ref={viewRef}
         >
             <div className="text-lg flex justify-between items-center">
