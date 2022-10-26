@@ -6,10 +6,12 @@ which was made by (https://www.figma.com/@zoomxrist)
 for see project run:
 
     $ npm install;
-    $ npm run dev;
+    $ npm run start;
 
 **preview:**
 
 [Desktop preview](https://drive.google.com/file/d/1-oFbxOFAuOWLGi9tk0OhV-CUE4FLnr6C/view?usp=sharing)
 
 [Mobile preview](https://drive.google.com/file/d/1ny9sqexssUSp2Jn1XbqOkasPjp9d1Lt3/view?usp=sharing)
+
+**NOTE:** you can add, edit, delete, view tasks, but changes aren't persisted between operations
