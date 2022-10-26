@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiFillWarning } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 const ViewTask = ({
     loading,
@@ -136,9 +137,12 @@ const ViewTask = ({
     }
 
     return (
-        <main
-            className="my-5 p-5 transition-all duration-700 ease-in animate-fade_in_from_bottom md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
+        <motion.main
+            className="my-5 p-5 transition-all duration-700 ease-in md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl m-auto"
             ref={viewRef}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            transition={{ duration: 0.3, ease: "linear" }}
         >
             <div className="text-lg flex justify-between items-center">
                 <h1 className="text-customText text-lg sm:text-xl font-bold">
@@ -191,7 +195,7 @@ const ViewTask = ({
                         : null}
                 </div>
             </div>
-        </main>
+        </motion.main>
     );
 };
 

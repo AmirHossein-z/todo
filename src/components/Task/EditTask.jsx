@@ -4,6 +4,7 @@ import { WithContext as InputTags } from "react-tag-input";
 import { taskSchema } from "../../validations/taskValidation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const EditTask = ({
     task,
@@ -66,7 +67,12 @@ const EditTask = ({
     };
 
     return (
-        <main className="grid my-5 p-5 items-center text-customText animate-fade_in_from_right md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto">
+        <motion.main
+            className="grid my-5 p-5 items-center text-customText md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto"
+            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 15 }}
+            transition={{ duration: 0.3, ease: "linear" }}
+        >
             <Formik
                 initialValues={{
                     title: task.title,
@@ -162,7 +168,7 @@ const EditTask = ({
                     </div>
                 </Form>
             </Formik>
-        </main>
+        </motion.main>
     );
 };
 

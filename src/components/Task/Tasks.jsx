@@ -4,6 +4,7 @@ import Loading from "../Loading";
 import Task from "./Task";
 import TasksContainer from "./TasksContainer";
 import DragTaskAlarm from "./DragTaskAlarm";
+import { motion } from "framer-motion";
 
 const Tasks = ({
     tasks,
@@ -15,7 +16,12 @@ const Tasks = ({
     if (loading) return <Loading />;
 
     return (
-        <main className="container grid sm:grid-cols-2 gap-y-10 animate-fade_in_from_bottom m-auto">
+        <motion.main
+            className="container grid sm:grid-cols-2 gap-y-10 m-auto"
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            transition={{ duration: 0.3, ease: "linear" }}
+        >
             <Droppable droppableId="1">
                 {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -71,7 +77,7 @@ const Tasks = ({
                     </div>
                 )}
             </Droppable>
-        </main>
+        </motion.main>
     );
 };
 

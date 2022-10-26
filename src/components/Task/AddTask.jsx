@@ -7,6 +7,7 @@ import { WithContext as InputTags } from "react-tag-input";
 import { taskSchema } from "../../validations/taskValidation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
     const navigate = useNavigate();
@@ -51,7 +52,12 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
     if (loading) return <Loading />;
 
     return (
-        <main className="grid my-5 p-5 items-center text-customText animate-fade_in_from_bottom md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto">
+        <motion.main
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            transition={{ duration: 0.3, type: "Tween" }}
+            className="grid my-5 p-5 items-center text-customText md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl m-auto"
+        >
             <Formik
                 initialValues={{ title: "", body: "" }}
                 validationSchema={taskSchema}
@@ -143,7 +149,7 @@ const AddTask = ({ loading, setLoading, tasks, setTasks }) => {
                     </div>
                 </Form>
             </Formik>
-        </main>
+        </motion.main>
     );
 };
 
