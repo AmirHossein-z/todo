@@ -17,63 +17,18 @@ body {
     font-family: Roboto;
 }
 
-.ReactTags__tagInputField {
-    @apply bg-transparent p-1 border border-customText border-opacity-50 rounded-lg py-1.5 px-1 w-full;
-}
-
-.ReactTags__tagInputField:focus {
-    @apply border border-customText outline-none;
-}
-
-.ReactTags__selected {
-    @apply flex flex-wrap gap-y-2.5 mb-2;
-}
-
-.ReactTags__selected .ReactTags__tag {
-    @apply bg-customText rounded-lg text-sm font-medium text-customdark flex justify-around items-center basis-1/5;
-}
-
-.ReactTags__selected .ReactTags__remove {
-    @apply text-base text-red-700;
-}
-
 .Toastify__toast {
     font-family: "Roboto";
 }
 
 /* @media (min-width: 640px) */
 @media screen(sm) {
-    .ReactTags__selected {
-        @apply grid-cols-4;
-    }
-
-    .ReactTags__selected .ReactTags__tag {
-        @apply p-1.5 text-base mr-1.5;
-    }
-
-    .ReactTags__selected .ReactTags__remove {
-        @apply text-xl;
-    }
 }
 
 /* @media (min-width: 768px) */
 @media screen(md) {
-    .ReactTags__selected {
-        @apply grid-cols-5;
-    }
-
-    .ReactTags__selected .ReactTags__tag {
-        @apply text-base p-1.5;
-    }
-
-    .ReactTags__selected .ReactTags__remove {
-        @apply text-xl;
-    }
 }
 
 /* @media (min-width: 1024px) */
 @media screen(lg) {
-    .ReactTags__selected {
-        @apply grid-cols-6;
-    }
 }
